@@ -8,3 +8,12 @@ switch($action){
   // añade más rutas: show_post, post_create, comment_store, admin_...
   default: echo "Ruta no encontrada";
 }
+
+include __DIR__ ."/views/layout/header.php"
+?>
+
+
+
+<?php 
+include __DIR__ ."/views/layout/footer.php"
+?>
