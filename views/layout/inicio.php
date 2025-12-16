@@ -34,21 +34,21 @@
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-200 font-sans overflow-x-hidden selection:bg-emerald-500 selection:text-white">
+<body class="bg-zinc-950 text-zinc-200 font-sans overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 
     <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative border-b border-zinc-800">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-emerald-600/20 blur-[120px] -z-10 rounded-full"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-indigo-600/20 blur-[120px] -z-10 rounded-full"></div>
         <div class="absolute inset-0 bg-pitch -z-10"></div>
 
         <div class="scroll-reveal space-y-8 max-w-4xl">
-            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-bold tracking-widest uppercase">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-bold tracking-widest uppercase">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                 Gestión Profesional de Ligas
             </span>
 
             <h1 class="text-6xl md:text-8xl font-black text-white tracking-tighter drop-shadow-xl">
                 LEAGUE <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-teal-300">
                     FACTORY
                 </span>
             </h1>
@@ -58,7 +58,7 @@
             </p>
 
             <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#ligas" class="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:scale-105">
+                <a href="#ligas" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-indigo hover:scale-105">
                     Buscar Equipo
                 </a>
                 <button class="px-8 py-4 bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-white font-bold rounded-xl transition-all">
@@ -80,7 +80,7 @@
             foreach($stats as $s): ?>
                 <div class="scroll-reveal">
                     <div class="text-4xl font-black text-white mb-1"><?php echo $s['n']; ?></div>
-                    <div class="text-emerald-500 text-xs font-bold uppercase tracking-wider"><?php echo $s['t']; ?></div>
+                    <div class="text-indigo-500 text-xs font-bold uppercase tracking-wider"><?php echo $s['t']; ?></div>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -93,22 +93,22 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-emerald-500/50 transition duration-300">
-                <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-6 text-emerald-400">
+            <div class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
+                <div class="w-12 h-12 bg-indigo-500/10 rounded-lg flex items-center justify-center mb-6 text-indigo-400">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2">Actas Digitales</h3>
                 <p class="text-zinc-400 text-sm">Los árbitros suben los resultados, goles y tarjetas desde el móvil al instante.</p>
             </div>
-            <div class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-emerald-500/50 transition duration-300">
-                <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-6 text-emerald-400">
+            <div class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
+                <div class="w-12 h-12 bg-indigo-500/10 rounded-lg flex items-center justify-center mb-6 text-indigo-400">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2">Estadísticas MVP</h3>
                 <p class="text-zinc-400 text-sm">Ranking automático de pichichis, zamoras (porteros) y asistencias.</p>
             </div>
-            <div class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-emerald-500/50 transition duration-300">
-                <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center mb-6 text-emerald-400">
+            <div class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
+                <div class="w-12 h-12 bg-indigo-500/10 rounded-lg flex items-center justify-center mb-6 text-indigo-400">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2">Calendario Auto</h3>
@@ -124,7 +124,7 @@
                     <h2 class="text-4xl font-bold text-white">Ligas Disponibles</h2>
                     <p class="text-zinc-400 mt-2">Inscribe a tu equipo en las mejores competiciones.</p>
                 </div>
-                <a href="#" class="hidden md:block text-emerald-400 font-bold hover:text-emerald-300">Ver todas &rarr;</a>
+                <a href="#" class="hidden md:block text-indigo-400 font-bold hover:text-indigo-300">Ver todas &rarr;</a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -142,12 +142,12 @@
                 foreach ($ligas as $liga):
                     // Lógica de colores según estado
                     $badgeColor = match($liga['estado']) {
-                        'Inscripciones' => 'bg-emerald-500 text-black',
+                        'Inscripciones' => 'bg-indigo-500 text-black',
                         'Últimas Plazas' => 'bg-amber-400 text-black animate-pulse',
                         'En Juego' => 'bg-zinc-700 text-white',
                     };
                 ?>
-                    <div class="scroll-reveal relative group bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-emerald-600 transition-all duration-300 hover:-translate-y-1">
+                    <div class="scroll-reveal relative group bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-indigo-600 transition-all duration-300 hover:-translate-y-1">
                         <div class="p-6">
                             <div class="flex justify-between items-start mb-4">
                                 <span class="text-xs font-bold text-zinc-400 border border-zinc-700 px-2 py-1 rounded uppercase">
@@ -158,24 +158,24 @@
                                 </span>
                             </div>
                             
-                            <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                            <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
                                 <?php echo $liga['nombre']; ?>
                             </h3>
 
                             <div class="space-y-2 mt-4">
                                 <div class="flex items-center text-sm text-zinc-400">
-                                    <svg class="w-4 h-4 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <svg class="w-4 h-4 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                     <?php echo $liga['horario']; ?>
                                 </div>
                                 <div class="flex items-center text-sm text-zinc-400">
-                                    <svg class="w-4 h-4 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                    <svg class="w-4 h-4 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                                     <?php echo $liga['equipos']; ?> Equipos
                                 </div>
                             </div>
                         </div>
 
                         <div class="p-4 bg-zinc-950/50 border-t border-zinc-800">
-                            <button class="w-full py-2 rounded-lg bg-zinc-800 text-white font-medium hover:bg-emerald-600 transition-colors text-sm">
+                            <button class="w-full py-2 rounded-lg bg-zinc-800 text-white font-medium hover:bg-indigo-600 transition-colors text-sm">
                                 Ver Clasificación
                             </button>
                         </div>
@@ -211,7 +211,7 @@
                     <div class="flex items-center gap-6 text-sm">
                         <div class="flex flex-col items-center">
                             <span class="text-white font-bold text-lg"><?php echo $p['hora']; ?></span>
-                            <span class="text-emerald-500 text-xs uppercase"><?php echo $p['fecha']; ?></span>
+                            <span class="text-indigo-500 text-xs uppercase"><?php echo $p['fecha']; ?></span>
                         </div>
                         <div class="text-zinc-500 text-right">
                             <div class="flex items-center gap-1">
