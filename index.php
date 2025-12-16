@@ -30,7 +30,6 @@ include __DIR__ . "/views/layout/header.php"
 </head>
 
 <body>
-  <h2 class="text-center">League Factory</h2>
 </body>
 
 </html>
