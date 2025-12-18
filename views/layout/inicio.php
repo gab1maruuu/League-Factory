@@ -18,13 +18,13 @@
             }
         }
 
-        .scroll-reveal {
+/*         .scroll-reveal {
             animation: fadeInUp linear both;
             
             animation-timeline: view();
             
             animation-range: entry 5% cover 35%;
-        }
+        } */
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-200 font-sans overflow-x-hidden selection:bg-indigo-500 selection:text-white">

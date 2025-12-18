@@ -22,7 +22,7 @@
                     <li><a href="index.php?action=login" class="text-zinc-400 hover:text-white transition-colors duration-200">Crea tu Equipo</a></li>
                     <li><a href="index.php?action=login" class="text-zinc-400 hover:text-white transition-colors duration-200">Unirse a Liga</a></li>
                     <li><a href="index.php?action=login" class="text-zinc-400 hover:text-white transition-colors duration-200">Clasificación</a></li>
-                    <li><a href="index.php?action=login" class="text-indigo-400 hover:text-indigo-300 transition-colors duration-200">Registrarse o Iniciar Sesión</a></li>
+                    <li><a href="index.php?action=login" class="rounded-3xl py-1 px-2 border border-indigo-400 text-indigo-400 hover:text-indigo-300 hover:border-indigo-300 transition-colors duration-300">Registrarse o Iniciar Sesión</a></li>
                 </ul>
             </nav>
         </div>
