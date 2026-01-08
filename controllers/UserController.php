@@ -18,7 +18,14 @@ class UserController {
     } else {
       header("Location: index.php?action=login&error=1");
     }
+    
     exit;
   }
+
+  // En controllers/UserController.php
+public function register() {
+    include 'views/auth/register.php';
 }
+}
+
 ?>

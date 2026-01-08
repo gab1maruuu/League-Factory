@@ -1,21 +1,42 @@
 <?php
 session_start();
 require 'config/Database.php';
-$action = $_GET['action'] ?? 'posts';
+require 'controllers/UserController.php';
+require 'controllers/PostController.php';
+
+$action = $_GET['action'] ?? 'home'; // Si no hay acción, vamos a 'home'
+
+// 1. Cargamos el Header (siempre visible)
+include __DIR__ ."/views/layout/header.php";
+
+// 2. El Switch decide QUÉ mostrar en el centro
 switch($action){
-  case 'posts': require 'controllers/PostController.php'; (new PostController())->index(); break;
-  case 'login': require 'controllers/UserController.php'; (new UserController())->login(); break;
-  // añade más rutas: show_post, post_create, comment_store, admin_...
-  default: echo "Ruta no encontrada";
+    
+    // CASO 1: Página de Inicio
+    case 'home':
+        include __DIR__ ."/views/layout/inicio.php";
+        break;
+
+    // CASO 2: Gestión de Usuarios
+    case 'login': 
+        (new UserController())->login(); 
+        break;
+        
+    case 'register': 
+        (new UserController())->register(); 
+        break;
+
+    // CASO 3: Posts
+    case 'posts': 
+        (new PostController())->index(); 
+        break;
+
+    // CASO POR DEFECTO: Error 404
+    default: 
+        echo "<div class='text-white p-10 text-center'>Error 404: Página no encontrada</div>";
+        break;
 }
 
-
-include __DIR__ ."/views/layout/header.php";
-include __DIR__ ."/views/layout/inicio.php";
-?>
-
-
-
-<?php 
-include __DIR__ ."/views/layout/footer.php"
+// 3. Cargamos el Footer (siempre visible)
+include __DIR__ ."/views/layout/footer.php";
 ?>
