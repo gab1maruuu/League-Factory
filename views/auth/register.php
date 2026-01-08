@@ -28,7 +28,7 @@
                 class="bg-zinc-900/80 backdrop-blur-md border border-zinc-700/50 rounded-2xl shadow-2xl p-8 hover:border-indigo-500/30 transition-all duration-300 text-left">
                 <h2 class="text-3xl font-bold text-white mb-6 text-center tracking-wider">REGISTRARSE</h2>
 
-                <form action="index.php?action=login" method="POST" class="space-y-6">
+                <form action="index.php?action=register_store" method="POST" class="space-y-6">
                     <div>
                         <label for="email"
                             class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Email</label>
@@ -61,7 +61,7 @@
                     <div class="pt-2">
                         <button type="submit"
                             class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:scale-[1.02] transform">
-                            Entrar
+                            Registrarse
                         </button>
                     </div>
                 </form>
@@ -69,7 +69,7 @@
                 <div class="mt-8 pt-6 border-t border-zinc-800 text-center">
                     <p class="text-zinc-500 text-sm">
                         ¿Ya tienes cuenta?
-                        <a href="index.php?action=register"
+                        <a href="index.php?action=login"
                             class="text-white font-bold hover:text-indigo-400 transition-colors">Iniciar Sesión</a>
                     </p>
                 </div>
