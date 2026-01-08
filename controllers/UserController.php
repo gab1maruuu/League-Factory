@@ -4,6 +4,10 @@ class UserController {
   private $userModel;
   public function __construct(){ $pdo=(new Database())->getPdo(); $this->userModel = new User($pdo); }
   public function login(){
+    if(!isset($_POST['email']) || !isset($_POST['password'])){
+      header("Location: index.php?action=login&error=1");
+      exit;
+    }
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $user = $this->userModel->findByEmail($email);
@@ -14,6 +18,7 @@ class UserController {
     } else {
       header("Location: index.php?action=login&error=1");
     }
+    exit;
   }
 }
 ?>
