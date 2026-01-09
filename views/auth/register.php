@@ -26,7 +26,7 @@
             </h1>
             <div
                 class="bg-zinc-900/80 backdrop-blur-md border border-zinc-700/50 rounded-2xl shadow-2xl p-8 hover:border-indigo-500/30 transition-all duration-300 text-left">
-                <h2 class="text-3xl font-bold text-white mb-6 text-center tracking-wider">REGISTRARSE</h2>
+                <h2 class="text-3xl font-bold text-white mb-6 text-center tracking-wider">Registrarse</h2>
 
                 <form action="index.php?action=register_store" method="POST" class="space-y-6">
                     <div>
