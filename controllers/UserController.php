@@ -57,9 +57,9 @@ class UserController
 
     // Login exitoso
     $_SESSION['user_id'] = $userData['id'];
-    $_SESSION['user_name'] = $userData['name'];
+    $_SESSION['user_name'] = $userData['nombre'];
     $_SESSION['user_email'] = $userData['email'];
-    $_SESSION['user_role'] = $userData['role'];
+    $_SESSION['user_role'] = $userData['rol'];
 
     header('Location: index.php?action=home');
     exit;
@@ -122,10 +122,10 @@ class UserController
 
     // Crear el usuario
     $data = [
-      'name' => $name,
+      'nombre' => $name,
       'email' => $email,
       'password_hash' => password_hash($password, PASSWORD_BCRYPT),
-      'role' => 'user'
+      'rol' => 'usuario'
     ];
 
     if ($this->user->insert($data)) {
