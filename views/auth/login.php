@@ -59,7 +59,7 @@
                     <p class="text-zinc-500 text-sm">
                         ¿No tienes cuenta?
                         <a href="index.php?action=register"
-                            class="text-white font-bold hover:text-indigo-400 transition-colors">Regístrate gratis</a>
+                            class="text-white font-bold hover:text-indigo-400 transition-colors">Regístrate</a>
                     </p>
                 </div>
             </div>
