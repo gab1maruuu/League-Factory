@@ -41,9 +41,6 @@
                         <div class="flex justify-between items-center mb-2">
                             <label for="password"
                                 class="block text-xs font-bold text-zinc-400 uppercase tracking-wider">Contraseña</label>
-                            <a href="#"
-                                class="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">¿Olvidaste
-                                tu contraseña?</a>
                         </div>
                         <input type="password" name="password" id="password"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
