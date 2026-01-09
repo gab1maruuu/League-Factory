@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=blog_db
+      - MYSQL_DATABASE=app_ligas
       - MYSQL_USER=blog_user
       - MYSQL_PASSWORD=blog_pass
     ports:

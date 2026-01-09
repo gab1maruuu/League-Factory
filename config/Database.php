@@ -3,7 +3,7 @@ class Database {
   private $pdo;
   public function __construct(){
     $host = getenv('DB_HOST') ?: 'db';
-    $db   = getenv('DB_NAME') ?: 'blog_db';
+    $db   = getenv('DB_NAME') ?: 'app_ligas';
     $user = getenv('DB_USER') ?: 'blog_user';
     $pass = getenv('DB_PASS') ?: 'blog_pass';
     $this->pdo = new PDO("mysql:host={$host};dbname={$db};charset=utf8mb4", $user, $pass, [
