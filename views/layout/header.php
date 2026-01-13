@@ -28,30 +28,19 @@
 
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="flex items-center gap-6 ml-4 border-l border-zinc-700 pl-6">
-                        <a href class="text-indigo-400 font-bold hover:text-indigo-500 transition-colors duration-200">
+                        <span class="text-indigo-400 font-bold">
                             <?php echo htmlspecialchars($_SESSION['user_name']); ?>
-                        </a>
-                        <a href="index.php?action=logout"
-                            class=" text-xs text-zinc-500 hover:text-red-400 transition-colors duration-700 uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-red-400">
-                            Salir
-                        </a>
-                    <?php if (isset($_SESSION['user_id'])): ?>
-                        <li class="flex items-center border-l border-zinc-700 pl-6">
-                            <span class="text-indigo-400 font-bold">
-                                <?php echo htmlspecialchars($_SESSION['user_name']); ?>
-                            </span>
-                            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-                        <li class="flex items-center border-zinc-700">
-                            <a href="index.php?action="
+                        </span>
+                        <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                            <a href="index.php?action=admin"
                                 class="text-xs text-indigo-500 hover:text-indigo-400 transition-colors uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-indigo-400">
                                 Panel Admin
                             </a>
-                        </li>
-                    <?php endif; ?>
-                    <a href="index.php?action=logout"
-                        class="text-xs text-zinc-500 hover:text-red-400 transition-colors uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-red-400">
-                        Salir
-                    </a>
+                        <?php endif; ?>
+                        <a href="index.php?action=logout"
+                            class="text-xs text-zinc-500 hover:text-red-400 transition-colors duration-200 uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-red-400">
+                            Salir
+                        </a>
                     </li>
                 <?php else: ?>
                     <li>
