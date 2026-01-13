@@ -28,7 +28,7 @@
                 class="bg-zinc-900/80 backdrop-blur-md border border-zinc-700/50 rounded-2xl shadow-2xl p-8 hover:border-indigo-500/30 transition-all duration-300 text-left">
                 <h2 class="text-2xl font-bold text-white mb-6 text-center">Iniciar Sesión</h2>
 
-                <form action="index.php?action=login_store" method="POST" class="space-y-6">
+                <form action="index.php?action=login" method="POST" class="space-y-6">
                     <div>
                         <label for="email"
                             class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Email</label>

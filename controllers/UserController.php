@@ -57,7 +57,7 @@ class UserController
 
     // Login exitoso
     $_SESSION['user_id'] = $userData['id'];
-    $_SESSION['user_name'] = $userData['nombre'];
+    $_SESSION['user_name'] = $userData['nombre_completo'];
     $_SESSION['user_email'] = $userData['email'];
     $_SESSION['user_role'] = $userData['rol'];
 

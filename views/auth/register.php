@@ -28,7 +28,15 @@
                 class="bg-zinc-900/80 backdrop-blur-md border border-zinc-700/50 rounded-2xl shadow-2xl p-8 hover:border-indigo-500/30 transition-all duration-300 text-left">
                 <h2 class="text-3xl font-bold text-white mb-6 text-center tracking-wider">Registrarse</h2>
 
-                <form action="index.php?action=register_store" method="POST" class="space-y-6">
+                <form action="index.php?action=register" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name"
+                            class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Nombre</label>
+                        <input type="text" name="name" id="name"
+                            class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
+                            placeholder="Tu nombre completo" required>
+                    </div>
+
                     <div>
                         <label for="email"
                             class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Email</label>
@@ -44,18 +52,18 @@
                         </div>
                         <input type="password" name="password" id="password"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
-                            placeholder="••••••••" required>
+                            placeholder="••••••••" minlength="6" required>
                     </div>
 
                     <div>
                         <div class="flex justify-between items-center mb-2">
-                            <label for="password"
+                            <label for="password_confirm"
                                 class="block text-xs font-bold text-zinc-400 uppercase tracking-wider">Confirmar Contraseña</label>
                         </div>
 
-                        <input type="password" name="password" id="password"
+                        <input type="password" name="password_confirm" id="password_confirm"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
-                            placeholder="••••••••" required>
+                            placeholder="••••••••" minlength="6" required>
                     </div>
 
                     <div class="pt-2">
