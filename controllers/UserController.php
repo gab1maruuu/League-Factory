@@ -57,7 +57,8 @@ class UserController
 
     // Login exitoso
     $_SESSION['user_id'] = $userData['id'];
-    $_SESSION['user_name'] = $userData['nombre_completo'];
+    $_SESSION['user_name'] = $userData['nombre'];
+    $_SESSION['user_surname'] = $userData['apellido'];
     $_SESSION['user_email'] = $userData['email'];
     $_SESSION['user_role'] = $userData['rol'];
 
@@ -84,12 +85,13 @@ class UserController
     }
 
     $name = $_POST['name'] ?? '';
+    $apellido = $_POST['apellido'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $password_confirm = $_POST['password_confirm'] ?? '';
 
     // Validaciones
-    if (empty($name) || empty($email) || empty($password) || empty($password_confirm)) {
+    if (empty($name) || empty($apellido) || empty($email) || empty($password) || empty($password_confirm)) {
       $_SESSION['error'] = 'Todos los campos son requeridos';
       include 'views/auth/register.php';
       return;
@@ -123,6 +125,7 @@ class UserController
     // Crear el usuario
     $data = [
       'nombre' => $name,
+      'apellido' => $apellido,
       'email' => $email,
       'password_hash' => password_hash($password, PASSWORD_BCRYPT),
       'rol' => 'usuario'

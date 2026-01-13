@@ -6,6 +6,7 @@ USE app_ligas;
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL, -- Recuerda usar password_hash() en PHP
     rol ENUM('admin', 'organizador', 'usuario') DEFAULT 'usuario',

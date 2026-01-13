@@ -34,7 +34,15 @@
                             class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Nombre</label>
                         <input type="text" name="name" id="name"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
-                            placeholder="Tu nombre completo" required>
+                            placeholder="Tu nombre" required>
+                    </div>
+
+                    <div>
+                        <label for="apellido"
+                            class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Apellido</label>
+                        <input type="text" name="apellido" id="apellido"
+                            class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
+                            placeholder="Tu apellido" required>
                     </div>
 
                     <div>

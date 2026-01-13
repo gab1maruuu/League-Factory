@@ -21,16 +21,15 @@ class User {
   }
 
   public function insert($data) {
-    // Los datos vienen con claves: nombre, email, password_hash, rol
-    // Pero la BD usa nombre_completo
-    $stmt = $this->db->prepare("INSERT INTO usuarios (nombre_completo, email, password_hash, rol) VALUES (:nombre, :email, :password_hash, :rol)");
+    // Los datos vienen con claves: nombre, apellido, email, password_hash, rol
+    $stmt = $this->db->prepare("INSERT INTO usuarios (nombre, apellido, email, password_hash, rol) VALUES (:nombre, :apellido, :email, :password_hash, :rol)");
     return $stmt->execute($data);
   }
 
   public function update($id, $data) {
     // Renombrar nombre a nombre_completo si viene en los datos
     if (isset($data['nombre'])) {
-      $data['nombre_completo'] = $data['nombre'];
+      $data['nombre'] = $data['nombre'];
       unset($data['nombre']);
     }
     $set = implode(', ', array_map(fn($key) => "$key = :$key", array_keys($data)));
