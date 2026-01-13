@@ -50,7 +50,7 @@
                             class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Email</label>
                         <input type="email" name="email" id="email"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
-                            placeholder="ejemplo@leaguefactory.com" required>
+                            placeholder="ejemplo@leaguefactory.com" value="<?php echo isset($_SESSION['old_input']['email']) ? htmlspecialchars($_SESSION['old_input']['email']) : ''; ?>" required>
                     </div>
 
                     <div>
@@ -91,4 +91,5 @@
                 </div>
             </div>
         </div>
+        <?php unset($_SESSION['old_input']); ?>
     </section>
