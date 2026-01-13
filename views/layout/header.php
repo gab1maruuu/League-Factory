@@ -26,6 +26,15 @@
                     <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200">Unirse a Liga</a></li>
                     <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200">Clasificación</a></li>
 
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li class="flex items-center gap-6 ml-4 border-l border-zinc-700 pl-6">
+                        <a href class="text-indigo-400 font-bold hover:text-indigo-500 transition-colors duration-200">
+                            <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+                        </a>
+                        <a href="index.php?action=logout"
+                            class=" text-xs text-zinc-500 hover:text-red-400 transition-colors duration-700 uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-red-400">
+                            Salir
+                        </a>
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <li class="flex items-center border-l border-zinc-700 pl-6">
                             <span class="text-indigo-400 font-bold">

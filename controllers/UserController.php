@@ -35,6 +35,10 @@ class UserController
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
+
+    // Guardamos los datos
+    $_SESSION['old_input'] = $_POST;
+
     if (empty($email) || empty($password)) {
       $_SESSION['error'] = 'Email y contraseña son requeridos';
       include 'views/auth/login.php';
@@ -45,14 +49,14 @@ class UserController
 
     if (!$userData) {
       $_SESSION['error'] = 'Email o contraseña incorrectos';
-      include 'views/auth/login.php';
-      return;
+      header('Location: index.php?action=login');
+      exit;
     }
 
     if (!password_verify($password, $userData['password_hash'])) {
       $_SESSION['error'] = 'Email o contraseña incorrectos';
-      include 'views/auth/login.php';
-      return;
+      header('Location: index.php?action=login');
+      exit;
     }
 
     // Login exitoso
@@ -93,33 +97,33 @@ class UserController
     // Validaciones
     if (empty($name) || empty($apellido) || empty($email) || empty($password) || empty($password_confirm)) {
       $_SESSION['error'] = 'Todos los campos son requeridos';
-      include 'views/auth/register.php';
-      return;
+      header('Location: index.php?action=register');
+      exit;
     }
 
     if (strlen($password) < 6) {
       $_SESSION['error'] = 'La contraseña debe tener al menos 6 caracteres';
-      include 'views/auth/register.php';
-      return;
+      header('Location: index.php?action=register');
+      exit;
     }
 
     if ($password !== $password_confirm) {
       $_SESSION['error'] = 'Las contraseñas no coinciden';
-      include 'views/auth/register.php';
-      return;
+      header('Location: index.php?action=register');
+      exit;
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $_SESSION['error'] = 'Email inválido';
-      include 'views/auth/register.php';
-      return;
+      header('Location: index.php?action=register');
+      exit;
     }
 
     // Verificar si el email ya existe
     if ($this->user->findByEmail($email)) {
       $_SESSION['error'] = 'El email ya está registrado';
-      include 'views/auth/register.php';
-      return;
+      header('Location: index.php?action=register');
+      exit;
     }
 
     // Crear el usuario
