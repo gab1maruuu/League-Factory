@@ -20,19 +20,30 @@
             </div>
 
             <nav>
-                <ul class="flex flex-row gap-6 text-sm font-medium">
-                    <li><a href="index.php?action=home"
-                            class="text-zinc-400 hover:text-white transition-colors duration-200">Inicio</a></li>
-                    <li><a href="index.php?action="
-                            class="text-zinc-400 hover:text-white transition-colors duration-200">Crea tu Equipo</a>
-                    </li>
-                    <li><a href="index.php?action="
-                            class="text-zinc-400 hover:text-white transition-colors duration-200">Unirse a Liga</a></li>
-                    <li><a href="index.php?action="
-                            class="text-zinc-400 hover:text-white transition-colors duration-200">Clasificación</a></li>
-                    <li><a href="index.php?action=register"
-                            class="rounded-3xl py-1 px-2 border border-indigo-400 text-indigo-400 hover:text-indigo-300 hover:border-indigo-300 transition-colors duration-300">Registrarse
-                            o Iniciar Sesión</a></li>
+                <ul class="flex flex-row gap-6 text-sm font-medium items-center">
+                    <li><a href="index.php?action=home" class="text-zinc-400 hover:text-white transition-colors duration-200">Inicio</a></li>
+                    <li><a href="index.php?action=" class="text-zinc-400 hover:text-white transition-colors duration-200">Crea tu Equipo</a></li>
+                    <li><a href="index.php?action=" class="text-zinc-400 hover:text-white transition-colors duration-200">Unirse a Liga</a></li>
+                    <li><a href="index.php?action=" class="text-zinc-400 hover:text-white transition-colors duration-200">Clasificación</a></li>
+
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <li class="flex items-center gap-4">
+                            <a href="" class="text-indigo-400 font-bold hover:text-indigo-600 transition-colors duration-200">
+                                <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+                            </a>
+                            <a href="index.php?action=logout"
+                                class="text-xs text-zinc-500 hover:text-red-400 transition-colors uppercase tracking-widest">
+                                Salir
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <a href="index.php?action=login"
+                                class="rounded-3xl py-1 px-4 border border-indigo-400 text-indigo-400 hover:text-indigo-300 hover:border-indigo-300 transition-colors duration-300">
+                                Registrarse o Iniciar Sesión
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
