@@ -41,8 +41,8 @@ class UserController
 
     if (empty($email) || empty($password)) {
       $_SESSION['error'] = 'Email y contraseña son requeridos';
-      include 'views/auth/login.php';
-      return;
+      header('Location: index.php?action=login');
+      exit;
     }
 
     $userData = $this->user->findByEmail($email);
@@ -87,6 +87,8 @@ class UserController
       $this->showRegister();
       return;
     }
+
+    $_SESSION['old_input'] = $_POST;
 
     $name = $_POST['name'] ?? '';
     $apellido = $_POST['apellido'] ?? '';
@@ -141,7 +143,8 @@ class UserController
       exit;
     } else {
       $_SESSION['error'] = 'Error al registrar el usuario';
-      include 'views/auth/register.php';
+      header('Location: index.php?action=register');
+      exit;
     }
   }
 
