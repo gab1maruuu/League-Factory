@@ -28,13 +28,23 @@
                 class="bg-zinc-900/80 backdrop-blur-md border border-zinc-700/50 rounded-2xl shadow-2xl p-8 hover:border-indigo-500/30 transition-all duration-300 text-left">
                 <h2 class="text-2xl font-bold text-white mb-6 text-center">Iniciar Sesión</h2>
 
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-sm font-medium"><?php echo $_SESSION['error']; ?></span>
+                    </div>
+                    <?php unset($_SESSION['error']); ?>
+                <?php endif; ?>
+
                 <form action="index.php?action=login" method="POST" class="space-y-6">
                     <div>
                         <label for="email"
                             class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Email</label>
-                        <input type="email" name="email" id="email"
+                        <input type="email" name="email" id="email" placeholder="ejemplo@leaguefactory.com" 
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
-                            placeholder="ejemplo@leaguefactory.com" required>
+                            value="<?php echo isset($_SESSION['old_input']['email']) ? htmlspecialchars($_SESSION['old_input']['email']) : ''; ?>" required>
                     </div>
 
                     <div>
@@ -64,4 +74,5 @@
                 </div>
             </div>
         </div>
+        <?php unset($_SESSION['old_input']); ?>
     </section>
