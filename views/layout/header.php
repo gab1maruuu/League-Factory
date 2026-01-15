@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?php echo get_locale(); ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -21,10 +21,10 @@
 
             <nav class="flex items-center gap-8">
                 <ul class="flex flex-row gap-6 text-sm font-medium items-center">
-                    <li><a href="index.php?action=home" class="text-zinc-400 hover:text-white transition-colors duration-200">Inicio</a></li>
-                    <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200">Crea tu Equipo</a></li>
-                    <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200">Unirse a Liga</a></li>
-                    <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200">Clasificación</a></li>
+                    <li><a href="index.php?action=home" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('home'); ?></a></li>
+                    <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('create_team'); ?></a></li>
+                    <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('join_league'); ?></a></li>
+                    <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('ranking'); ?></a></li>
 
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="flex items-center gap-6 ml-4 border-l border-zinc-700 pl-6">
@@ -34,22 +34,34 @@
                         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
                             <a href="adminPanel.php?action=admin"
                                 class="text-xs text-indigo-500 hover:text-indigo-400 transition-colors uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-indigo-400">
-                                Panel Admin
+                                <?php echo __('admin_panel'); ?>
                             </a>
                         <?php endif; ?>
                         <a href="index.php?action=logout"
                             class="text-xs text-zinc-500 hover:text-red-400 transition-colors duration-200 uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-red-400">
-                            Salir
+                            <?php echo __('logout'); ?>
                         </a>
                     </li>
                 <?php else: ?>
                     <li>
                         <a href="index.php?action=login"
                             class="rounded-3xl py-1 px-4 border border-indigo-400 text-indigo-400 hover:text-indigo-300 hover:border-indigo-300 transition-colors duration-300">
-                            Registrarse o Iniciar Sesión
+                            <?php echo __('login_register'); ?>
                         </a>
                     </li>
                 <?php endif; ?>
+                
+                    <li class="flex items-center gap-2 ml-4 pl-4">
+                        <a href="?<?php echo http_build_query(array_merge($_GET, ['lang' => 'es'])); ?>" 
+                           class="<?php echo get_locale() === 'es' ? 'text-white font-bold' : 'text-zinc-500 hover:text-zinc-300'; ?> transition-colors text-xs uppercase tracking-wide">
+                            ES
+                        </a>
+                        <span class="text-zinc-700">|</span>
+                        <a href="?<?php echo http_build_query(array_merge($_GET, ['lang' => 'en'])); ?>" 
+                           class="<?php echo get_locale() === 'en' ? 'text-white font-bold' : 'text-zinc-500 hover:text-zinc-300'; ?> transition-colors text-xs uppercase tracking-wide">
+                            EN
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
