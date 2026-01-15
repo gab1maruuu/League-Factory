@@ -25,29 +25,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         (new UserController())->register();
         exit;
     }
+    if ($action === 'update_user') {
+        (new UserController())->updateUser();
+        exit;
+    }
 }
 
 /**
  * 2. CARGA DE INTERFAZ (Con HTML)
  * Solo llegamos aquí si no hubo una redirección antes
  */
-include __DIR__ ."/views/layout/header.php";
+include __DIR__ . "/views/layout/header.php";
 
-switch($action) {
+switch ($action) {
     case 'home':
-        include __DIR__ ."/views/layout/inicio.php";
+        include __DIR__ . "/views/layout/inicio.php";
         break;
 
-    case 'login': 
+    case 'login':
         (new UserController())->showLogin(); // Solo muestra el formulario
         break;
-        
-    case 'register': 
+
+    case 'register':
         (new UserController())->showRegister(); // Solo muestra el formulario
         break;
 
-    case 'posts': 
-        (new PostController())->index(); 
+    case 'posts':
+        (new PostController())->index();
         break;
 
     case 'admin':
@@ -58,9 +62,9 @@ switch($action) {
         (new UserController())->getAllUsers();
         break;
 
-    default: 
+    default:
         echo "<div class='text-white p-10 text-center'>Error 404: Página no encontrada</div>";
         break;
 }
 
-include __DIR__ ."/views/layout/footer.php";
+include __DIR__ . "/views/layout/footer.php";
