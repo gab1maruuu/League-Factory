@@ -189,4 +189,55 @@ class UserController
     $users = $this->user->getAll();
     include 'views/admin/users.php';
   }
+
+  /**
+   * Actualiza un usuario (Admin)
+   */
+  public function updateUser()
+  {
+    if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
+      $_SESSION['error'] = 'No tienes permisos';
+      header('Location: index.php?action=home');
+      exit;
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+      header('Location: adminPanel.php');
+      exit;
+    }
+
+    $id = $_POST['id'] ?? '';
+    $nombre = $_POST['nombre'] ?? '';
+    $apellido = $_POST['apellido'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $rol = $_POST['rol'] ?? 'usuario';
+
+    if (empty($id) || empty($email)) {
+      $_SESSION['error'] = 'ID y Email son requeridos';
+      header('Location: adminPanel.php');
+      exit;
+    }
+
+    $data = [
+      'nombre' => $nombre,
+      'apellido' => $apellido,
+      'email' => $email,
+      'rol' => $rol
+    ];
+
+    // Si se envía password (opcional)
+    if (!empty($_POST['password'])) {
+      $data['password_hash'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    }
+
+    if ($this->user->update($id, $data)) {
+      $_SESSION['success'] = 'Usuario actualizado correctamente';
+    } else {
+      $_SESSION['error'] = 'Error al actualizar el usuario';
+    }
+
+    header('Location: adminPanel.php');
+    exit;
+  }
 }
+

@@ -26,7 +26,7 @@
             </h1>
             <div
                 class="bg-zinc-900/80 backdrop-blur-md border border-zinc-700/50 rounded-2xl shadow-2xl p-8 hover:border-indigo-500/30 transition-all duration-300 text-left">
-                <h2 class="text-2xl font-bold text-white mb-6 text-center">Iniciar Sesión</h2>
+                <h2 class="text-2xl font-bold text-white mb-6 text-center"><?php echo __('login'); ?></h2>
 
                 <?php if (isset($_SESSION['error'])): ?>
                     <div class="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
@@ -50,7 +50,7 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <label for="password"
-                                class="block text-xs font-bold text-zinc-400 uppercase tracking-wider">Contraseña</label>
+                                class="block text-xs font-bold text-zinc-400 uppercase tracking-wider"><?php echo __('password'); ?></label>
                         </div>
                         <input type="password" name="password" id="password"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
@@ -60,16 +60,16 @@
                     <div class="pt-2">
                         <button type="submit"
                             class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:scale-[1.02] transform">
-                            Entrar
+                            <?php echo __('login'); ?>
                         </button>
                     </div>
                 </form>
 
                 <div class="mt-8 pt-6 border-t border-zinc-800 text-center">
                     <p class="text-zinc-500 text-sm">
-                        ¿No tienes cuenta?
+                        <?php echo __('noAccount'); ?>
                         <a href="index.php?action=register"
-                            class="text-white font-bold hover:text-indigo-400 transition-colors">Regístrate</a>
+                            class="text-white font-bold hover:text-indigo-400 transition-colors"><?php echo __('register'); ?></a>
                     </p>
                 </div>
             </div>

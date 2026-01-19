@@ -1,21 +1,18 @@
 <?php
 session_start();
 require_once 'config/Database.php';
+require_once 'utils/i18n.php';
 require_once 'controllers/UserController.php';
 require_once 'controllers/PostController.php';
 
 $action = $_GET['action'] ?? 'home';
 
-/**
- * 1. LÓGICA DE ACCIONES QUE REDIRIGEN (Sin HTML)
- * Ponemos aquí las acciones que NO deben cargar el header todavía
- */
+
 if ($action === 'logout') {
-    (new UserController())->logout(); // Este método hace session_destroy y header()
+    (new UserController())->logout(); 
     exit;
 }
 
-// Si es un POST de login o registro, mejor procesarlo antes del HTML también
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'login') {
         (new UserController())->login();
@@ -25,19 +22,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         (new UserController())->register();
         exit;
     }
+    if ($action === 'update_user') {
+        (new UserController())->updateUser();
+        exit;
+    }
 }
 
-/**
- * 2. CARGA DE INTERFAZ (Con HTML)
- * Solo llegamos aquí si no hubo una redirección antes
- */
-include __DIR__ ."/views/layout/header.php";
+include __DIR__ . "/views/layout/header.php";
 
-switch($action) {
+switch ($action) {
     case 'home':
-        include __DIR__ ."/views/layout/inicio.php";
+        include __DIR__ . "/views/layout/inicio.php";
         break;
 
+<<<<<<< HEAD
     case 'profile':
         (new UserController())->profile();
         break;
@@ -48,10 +46,18 @@ switch($action) {
         
     case 'register': 
         (new UserController())->showRegister(); 
+=======
+    case 'login':
+        (new UserController())->showLogin(); 
+>>>>>>> 391e1680f1642c6d5f17677cf85d689475e3d9c8
         break;
 
-    case 'posts': 
-        (new PostController())->index(); 
+    case 'register':
+        (new UserController())->showRegister(); 
+        break;
+
+    case 'posts':
+        (new PostController())->index();
         break;
 
     case 'admin':
@@ -62,9 +68,9 @@ switch($action) {
         (new UserController())->getAllUsers();
         break;
 
-    default: 
+    default:
         echo "<div class='text-white p-10 text-center'>Error 404: Página no encontrada</div>";
         break;
 }
 
-include __DIR__ ."/views/layout/footer.php";
+include __DIR__ . "/views/layout/footer.php";

@@ -23,7 +23,7 @@
             </h1>
 
             <div class="bg-zinc-900/80 backdrop-blur-md border border-zinc-700/50 rounded-2xl shadow-2xl p-8 hover:border-indigo-500/30 transition-all duration-300 text-left">
-                <h2 class="text-3xl font-bold text-white mb-6 text-center tracking-wider">Registrarse</h2>
+                <h2 class="text-3xl font-bold text-white mb-6 text-center tracking-wider"><?php echo __('register'); ?></h2>
 
                 <?php if (isset($_SESSION['error'])): ?>
                     <div class="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
@@ -37,23 +37,23 @@
 
                 <form action="index.php?action=register" method="POST" class="space-y-6">
                     <div>
-                        <label for="name" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Nombre</label>
+                        <label for="name" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2"><?php echo __('name'); ?></label>
                         <input type="text" name="name" id="name"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
-                            placeholder="Tu nombre" 
+                            placeholder="<?php echo __('yourName'); ?>" 
                             value="<?php echo isset($_SESSION['old_input']['name']) ? htmlspecialchars($_SESSION['old_input']['name']) : ''; ?>" required>
                     </div>
 
                     <div>
-                        <label for="apellido" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Apellido</label>
+                        <label for="apellido" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2"><?php echo __('surname'); ?></label>
                         <input type="text" name="apellido" id="apellido"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
-                            placeholder="Tu apellido" 
+                            placeholder="<?php echo __('yourSurname'); ?>" 
                             value="<?php echo isset($_SESSION['old_input']['apellido']) ? htmlspecialchars($_SESSION['old_input']['apellido']) : ''; ?>" required>
                     </div>
 
                     <div>
-                        <label for="email" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Email</label>
+                        <label for="email" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2"><?php echo __('email'); ?></label>
                         <input type="email" name="email" id="email"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
                             placeholder="ejemplo@leaguefactory.com" 
@@ -61,14 +61,14 @@
                     </div>
 
                     <div>
-                        <label for="password" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Contraseña</label>
+                        <label for="password" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2"><?php echo __('password'); ?></label>
                         <input type="password" name="password" id="password"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
                             placeholder="••••••••" minlength="6" required>
                     </div>
 
                     <div>
-                        <label for="password_confirm" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Confirmar Contraseña</label>
+                        <label for="password_confirm" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2"><?php echo __('confirmPassword'); ?></label>
                         <input type="password" name="password_confirm" id="password_confirm"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
                             placeholder="••••••••" minlength="6" required>
@@ -77,15 +77,15 @@
                     <div class="pt-2">
                         <button type="submit"
                             class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:scale-[1.02] transform">
-                            Registrarse
+                            <?php echo __('register'); ?>
                         </button>
                     </div>
                 </form>
 
                 <div class="mt-8 pt-6 border-t border-zinc-800 text-center">
                     <p class="text-zinc-500 text-sm">
-                        ¿Ya tienes cuenta?
-                        <a href="index.php?action=login" class="text-white font-bold hover:text-indigo-400 transition-colors">Iniciar Sesión</a>
+                        <?php echo __('alreadyAccount'); ?>
+                        <a href="index.php?action=login" class="text-white font-bold hover:text-indigo-400 transition-colors"><?php echo __('login'); ?></a>
                     </p>
                 </div>
             </div>

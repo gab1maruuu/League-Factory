@@ -1,0 +1,20 @@
+<?php
+return [
+    'home' => 'Home',
+    'create_team' => 'Create Team',
+    'join_league' => 'Join League',
+    'ranking' => 'Standings',
+    'admin_panel' => 'Admin Panel',
+    'logout' => 'Logout',
+    'login_register' => 'Register or Login',
+    'login' => 'Login',
+    'register' => 'Register',
+    'noAccount' => 'No account?',
+    'name' => 'Name',
+    'surname' => 'Surname',
+    'confirmPassword' => 'Confirm Password',
+    'alreadyAccount' => 'Already have an account?',
+    'yourName' => 'Your name',
+    'yourSurname' => 'Your surname',
+];
+?>
