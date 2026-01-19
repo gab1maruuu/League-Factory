@@ -38,12 +38,16 @@ switch($action) {
         include __DIR__ ."/views/layout/inicio.php";
         break;
 
+    case 'profile':
+        (new UserController())->profile();
+        break;
+
     case 'login': 
-        (new UserController())->showLogin(); // Solo muestra el formulario
+        (new UserController())->showLogin();
         break;
         
     case 'register': 
-        (new UserController())->showRegister(); // Solo muestra el formulario
+        (new UserController())->showRegister(); 
         break;
 
     case 'posts': 
