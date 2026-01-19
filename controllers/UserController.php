@@ -1,10 +1,12 @@
 <?php
 require_once 'models/User.php';
+require_once 'models/Team.php';
 require_once 'config/Database.php';
 
 class UserController
 {
   private $user;
+  private $team;
   private $db;
 
   public function __construct()
@@ -12,6 +14,7 @@ class UserController
     $database = new Database();
     $this->db = $database->getPdo();
     $this->user = new User($this->db);
+    $this->team = new Team($this->db);
   }
 
   /**
@@ -239,5 +242,46 @@ class UserController
     header('Location: adminPanel.php');
     exit;
   }
-}
+  public function updateTeam()
+  {
+    if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
+      $_SESSION['error'] = 'No tienes permisos';
+      header('Location: index.php?action=home');
+      exit;
+    }
 
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+      header('Location: adminPanel.php');
+      exit;
+    }
+
+    $id = $_POST['id'] ?? '';
+    $nombre = $_POST['nombre'] ?? '';
+    $escudo = $_POST['escudo'] ?? '';
+
+    // Capitan es opcional
+    $capitan_id = !empty($_POST['capitan_id']) ? $_POST['capitan_id'] : null;
+
+    if (empty($id) || empty($nombre)) {
+      $_SESSION['error'] = 'ID y Nombre son requeridos';
+      header('Location: adminPanel.php');
+      exit;
+    }
+
+    $data = [
+      'nombre' => $nombre,
+      'escudo_url' => $escudo,
+      'capitan_id' => $capitan_id
+    ];
+
+    if ($this->team->update($id, $data)) {
+      $_SESSION['success'] = 'Equipo actualizado correctamente';
+    } else {
+      $_SESSION['error'] = 'Error al actualizar el equipo';
+    }
+
+    header('Location: adminPanel.php');
+    exit;
+  }
+
+}

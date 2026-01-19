@@ -27,8 +27,7 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
         </h1>
     </div>
     <section id="usuarios">
-        <h2 class="ml-52 text-4xl font-black text-white tracking-tighter drop-shadow-xl mb-8">
-            Usuarios
+        <h2 class="ml-52 text-4xl font-black text-white tracking-tighter drop-shadow-xl mb-8">Administración de Usuarios
         </h2>
         <?php
         require_once 'config/Database.php';
@@ -88,8 +87,6 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
                 </table>
             </div>
         </div>
-
-        <!-- Modal de Edición -->
         <div id="editModal"
             class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
             <div class="bg-zinc-900 border border-zinc-700 p-8 rounded-xl shadow-2xl w-full max-w-md relative">
@@ -157,7 +154,119 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
         </script>
     </section>
     <section id="equipos">
+        <h2 class="mt-8 ml-52 text-4xl font-black text-white tracking-tighter drop-shadow-xl mb-8">Modificar Equipos
+        </h2>
+        <?php
+        require_once 'models/Team.php';
+        $teamModel = new Team($db);
+        $equipos = $teamModel->getAll();
+        ?>
+        <div class="container mx-auto px-4">
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="bg-green-500 text-white p-4 rounded mb-4">
+                    <?= $_SESSION['success'];
+                    unset($_SESSION['success']); ?>
+                </div>
+            <?php endif; ?>
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="bg-red-500 text-white p-4 rounded mb-4">
+                    <?= $_SESSION['error'];
+                    unset($_SESSION['error']); ?>
+                </div>
+            <?php endif; ?>
+            <div class="overflow-x-auto bg-zinc-900 rounded-lg shadow-xl border border-zinc-800">
+                <table class="w-full text-left text-zinc-300">
+                    <thead class="bg-zinc-800 text-indigo-400 uppercase text-xs font-bold">
+                        <tr>
+                            <th class="px-6 py-4">ID</th>
+                            <th class="px-6 py-4">Nombre</th>
+                            <th class="px-6 py-4">Escudo</th>
+                            <th class="px-6 py-4">Capitan ID</th>
+                            <th class="px-6 py-4 text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-zinc-800">
+                        <?php foreach ($equipos as $t): ?>
+                            <tr class="hover:bg-zinc-800 transition-colors">
+                                <td class="px-6 py-4 font-mono text-sm text-zinc-500"><?= $t['id'] ?></td>
+                                <td class="px-6 py-4 font-semibold text-white">
+                                    <?= htmlspecialchars($t['nombre']) ?>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <img src="<?= htmlspecialchars($t['escudo_url'] ?? '') ?>" alt="Escudo"
+                                        class="h-8 w-8 object-contain bg-white rounded-full">
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="text-zinc-400"><?= $t['capitan_id'] ?? 'N/A' ?></span>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <button onclick='openEditTeamModal(<?= json_encode($t) ?>)'
+                                        class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1 rounded text-sm font-bold transition-colors">
+                                        Editar
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="editTeamModal"
+            class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+            <div class="bg-zinc-900 border border-zinc-700 p-8 rounded-xl shadow-2xl w-full max-w-md relative">
+                <button onclick="closeEditTeamModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
 
+                <h3 class="text-2xl font-bold text-white mb-6">Editar Equipo</h3>
+
+                <form action="index.php?action=update_team" method="POST" class="space-y-4">
+                    <input type="hidden" name="id" id="edit_team_id">
+
+                    <div>
+                        <label class="block text-zinc-400 text-sm font-bold mb-2">Nombre</label>
+                        <input type="text" name="nombre" id="edit_team_nombre"
+                            class="w-full bg-zinc-800 border border-zinc-700 rounded p-2 text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-zinc-400 text-sm font-bold mb-2">Escudo URL</label>
+                        <input type="text" name="escudo" id="edit_team_escudo"
+                            class="w-full bg-zinc-800 border border-zinc-700 rounded p-2 text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-zinc-400 text-sm font-bold mb-2">Capitán ID</label>
+                        <input type="number" name="capitan_id" id="edit_team_capitan"
+                            class="w-full bg-zinc-800 border border-zinc-700 rounded p-2 text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded transition-colors mt-4">
+                        Guardar Cambios
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function openEditTeamModal(team) {
+                document.getElementById('edit_team_id').value = team.id;
+                document.getElementById('edit_team_nombre').value = team.nombre;
+                document.getElementById('edit_team_escudo').value = team.escudo_url;
+                document.getElementById('edit_team_capitan').value = team.capitan_id;
+
+                document.getElementById('editTeamModal').classList.remove('hidden');
+            }
+
+            function closeEditTeamModal() {
+                document.getElementById('editTeamModal').classList.add('hidden');
+            }
+        </script>
+    </section>
     </section>
 
     <section id="ligas">

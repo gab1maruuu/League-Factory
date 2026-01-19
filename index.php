@@ -26,6 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         (new UserController())->updateUser();
         exit;
     }
+    if ($action === 'update_team') {
+        (new UserController())->updateTeam();
+        exit;
+    }
 }
 
 include __DIR__ . "/views/layout/header.php";
