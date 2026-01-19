@@ -35,8 +35,21 @@ switch ($action) {
         include __DIR__ . "/views/layout/inicio.php";
         break;
 
+<<<<<<< HEAD
     case 'login':
         (new UserController())->showLogin(); 
+=======
+    case 'profile':
+        (new UserController())->profile();
+        break;
+
+    case 'login': 
+        (new UserController())->showLogin();
+        break;
+        
+    case 'register': 
+        (new UserController())->showRegister(); 
+>>>>>>> 2da5e9f525320bc490253fd4f0d03b1c3f973159
         break;
 
     case 'register':

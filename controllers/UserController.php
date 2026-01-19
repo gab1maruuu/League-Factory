@@ -151,6 +151,7 @@ class UserController
   /**
    * Obtiene el perfil del usuario actual
    */
+  // Busca la línea del método profile y cámbiala por esta:
   public function profile()
   {
     if (!isset($_SESSION['user_id'])) {
@@ -159,7 +160,9 @@ class UserController
     }
 
     $userData = $this->user->findById($_SESSION['user_id']);
-    include 'views/auth/profile.php';
+
+    // USAR ESTA RUTA:
+    include __DIR__ . '/../views/user/profileUser.php';
   }
 
   /**

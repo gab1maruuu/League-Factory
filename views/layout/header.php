@@ -28,9 +28,9 @@
 
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="flex items-center gap-6 ml-4 border-l border-zinc-700 pl-6">
-                        <span class="text-indigo-400 font-bold">
+                        <a href="index.php?action=profile" class="text-indigo-400 font-bold">
                             <?php echo htmlspecialchars($_SESSION['user_name']); ?>
-                        </span>
+                        </a>
                         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
                             <a href="adminPanel.php?action=admin"
                                 class="text-xs text-indigo-500 hover:text-indigo-400 transition-colors uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-indigo-400">
