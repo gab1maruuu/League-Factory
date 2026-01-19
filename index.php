@@ -36,9 +36,12 @@ switch ($action) {
         break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     case 'login':
         (new UserController())->showLogin(); 
 =======
+=======
+>>>>>>> 32023e911c6cb5beee6c36b4a8f96b0f66cf1031
     case 'profile':
         (new UserController())->profile();
         break;
@@ -46,11 +49,14 @@ switch ($action) {
     case 'login': 
         (new UserController())->showLogin();
         break;
+<<<<<<< HEAD
         
     case 'register': 
         (new UserController())->showRegister(); 
 >>>>>>> 2da5e9f525320bc490253fd4f0d03b1c3f973159
         break;
+=======
+>>>>>>> 32023e911c6cb5beee6c36b4a8f96b0f66cf1031
 
     case 'register':
         (new UserController())->showRegister(); 
