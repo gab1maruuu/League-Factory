@@ -36,11 +36,7 @@ class User
 
   public function update($id, $data)
   {
-    // Renombrar nombre a nombre_completo si viene en los datos
-    // Renombrar nombre a nombre_completo si viene en los datos
     if (isset($data['nombre'])) {
-      // $data['nombre'] = $data['nombre']; // No es necesario
-      // unset($data['nombre']); // Esto borraba el nombre y fallaba el update
     }
     $set = implode(', ', array_map(fn($key) => "$key = :$key", array_keys($data)));
     $data['id'] = $id;

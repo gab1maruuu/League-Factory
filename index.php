@@ -4,6 +4,7 @@ require_once 'config/Database.php';
 require_once 'utils/i18n.php';
 require_once 'controllers/UserController.php';
 require_once 'controllers/PostController.php';
+require_once 'controllers/TeamController.php';
 
 $action = $_GET['action'] ?? 'home';
 
@@ -57,6 +58,14 @@ switch ($action) {
 
     case 'posts':
         (new PostController())->index();
+        break;
+
+    case 'create_team':
+        (new TeamController())->create();
+        break;
+
+    case 'store_team':
+        (new TeamController())->store();
         break;
 
     case 'admin':

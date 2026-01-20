@@ -37,6 +37,20 @@ class Team
         return $stmt->execute($data);
     }
 
+    public function insert($data)
+    {
+        $allowed = ['nombre', 'escudo_url', 'capitan_id'];
+        $data = array_intersect_key($data, array_flip($allowed));
+        
+        $columns = implode(", ", array_keys($data));
+        $values = ":" . implode(", :", array_keys($data));
+        
+        $sql = "INSERT INTO equipos ($columns) VALUES ($values)";
+        $stmt = $this->db->prepare($sql);
+        
+        return $stmt->execute($data);
+    }
+
     public function delete($id)
     {
         $stmt = $this->db->prepare("DELETE FROM equipos WHERE id = :id");
