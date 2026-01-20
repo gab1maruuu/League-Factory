@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
                 transform: translateY(60px) scale(0.95);
                 filter: blur(5px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -18,7 +20,7 @@
             }
         }
 
-/*         .scroll-reveal {
+        /*         .scroll-reveal {
             animation: fadeInUp linear both;
             
             animation-timeline: view();
@@ -27,14 +29,19 @@
         } */
     </style>
 </head>
+
 <body class="bg-zinc-950 text-zinc-200 font-sans overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 
-    <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative border-b border-zinc-800">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-indigo-600/20 blur-[120px] -z-10 rounded-full"></div>
+    <section
+        class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative border-b border-zinc-800">
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-indigo-600/20 blur-[120px] -z-10 rounded-full">
+        </div>
         <div class="absolute inset-0 bg-pitch -z-10"></div>
 
         <div class="scroll-reveal space-y-8 max-w-4xl">
-            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-bold tracking-widest uppercase">
+            <span
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-bold tracking-widest uppercase">
                 Gestión Profesional de Ligas
             </span>
 
@@ -46,14 +53,17 @@
             </h1>
 
             <p class="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-                Organiza tu liga de <strong>Fútbol 7, 11 o Sala</strong> como un profesional. Calendarios automáticos, actas digitales y estadísticas en tiempo real.
+                Organiza tu liga de <strong>Fútbol 7, 11 o Sala</strong> como un profesional. Calendarios automáticos,
+                actas digitales y estadísticas en tiempo real.
             </p>
 
             <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#ligas" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-indigo hover:scale-105">
+                <a href="#ligas"
+                    class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-indigo hover:scale-105">
                     Buscar Equipo
                 </a>
-                <button class="px-8 py-4 bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-white font-bold rounded-xl transition-all">
+                <button
+                    class="px-8 py-4 bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-white font-bold rounded-xl transition-all">
                     Crear mi Liga
                 </button>
             </div>
@@ -62,14 +72,14 @@
 
     <section class="py-16 border-b border-zinc-800 bg-zinc-900/30">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <?php 
+            <?php
             $stats = [
                 ["n" => "2,450", "t" => "Partidos Jugados"],
                 ["n" => "12,800", "t" => "Goles Anotados"],
                 ["n" => "350", "t" => "Árbitros"],
                 ["n" => "85", "t" => "Ligas Activas"]
             ];
-            foreach($stats as $s): ?>
+            foreach ($stats as $s): ?>
                 <div class="scroll-reveal">
                     <div class="text-4xl font-black text-white mb-1"><?php echo $s['n']; ?></div>
                     <div class="text-indigo-500 text-xs font-bold uppercase tracking-wider"><?php echo $s['t']; ?></div>
@@ -85,17 +95,22 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
+            <div
+                class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
                 <h3 class="text-xl font-bold text-white mb-2">Actas Digitales</h3>
-                <p class="text-zinc-400 text-sm">Los árbitros suben los resultados, goles y tarjetas desde el móvil al instante.</p>
+                <p class="text-zinc-400 text-sm">Los árbitros suben los resultados, goles y tarjetas desde el móvil al
+                    instante.</p>
             </div>
-            <div class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
+            <div
+                class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
                 <h3 class="text-xl font-bold text-white mb-2">Estadísticas MVP</h3>
                 <p class="text-zinc-400 text-sm">Ranking automático de pichichis, zamoras (porteros) y asistencias.</p>
             </div>
-            <div class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
+            <div
+                class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
                 <h3 class="text-xl font-bold text-white mb-2">Calendario Auto</h3>
-                <p class="text-zinc-400 text-sm">Genera ligas de ida y vuelta o torneos de eliminación con un solo clic.</p>
+                <p class="text-zinc-400 text-sm">Genera ligas de ida y vuelta o torneos de eliminación con un solo clic.
+                </p>
             </div>
         </div>
     </section>
@@ -124,22 +139,23 @@
 
                 foreach ($ligas as $liga):
                     // Lógica de colores según estado
-                    $badgeColor = match($liga['estado']) {
+                    $badgeColor = match ($liga['estado']) {
                         'Inscripciones' => 'bg-indigo-500 text-black',
                         'Últimas Plazas' => 'bg-amber-400 text-black',
                         'En Juego' => 'bg-zinc-700 text-white',
                     };
-                ?>
-                    <div class="scroll-reveal relative group bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-indigo-600 transition-all duration-300 hover:-translate-y-1">
+                    ?>
+                    <div
+                        class="scroll-reveal relative group bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-indigo-600 transition-all duration-300 hover:-translate-y-1">
                         <div class="p-6">
                             <div class="flex justify-between items-start mb-4">
-                                    <?php echo $liga['tipo']; ?>
+                                <?php echo $liga['tipo']; ?>
                                 </span>
                                 <span class="text-xs font-bold px-3 py-1 rounded-full <?php echo $badgeColor; ?>">
                                     <?php echo $liga['estado']; ?>
                                 </span>
                             </div>
-                            
+
                             <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
                                 <?php echo $liga['nombre']; ?>
                             </h3>
@@ -155,7 +171,8 @@
                         </div>
 
                         <div class="p-4 bg-zinc-950/50 border-t border-zinc-800">
-                            <button class="w-full py-2 rounded-lg bg-zinc-800 text-white font-medium hover:bg-indigo-600 transition-colors text-sm">
+                            <button
+                                class="w-full py-2 rounded-lg bg-zinc-800 text-white font-medium hover:bg-indigo-600 transition-colors text-sm">
                                 Ver Clasificación
                             </button>
                         </div>
@@ -166,4 +183,5 @@
     </section>
 
 </body>
+
 </html>

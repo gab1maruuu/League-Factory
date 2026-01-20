@@ -16,5 +16,8 @@ return [
     'alreadyAccount' => 'Already have an account?',
     'yourName' => 'Your name',
     'yourSurname' => 'Your surname',
+    'user_admin' => 'User Administration',
+    'modify_teams' => 'Modify Teams',
+    'modify_leagues' => 'Modify Leagues',
 ];
 ?>

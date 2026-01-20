@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'utils/i18n.php';
 
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
     header("Location: index.php?action=home");
@@ -7,7 +8,7 @@ if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo get_locale(); ?>">
 
 <head>
     <meta charset="UTF-8">
