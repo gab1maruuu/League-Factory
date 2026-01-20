@@ -16,5 +16,11 @@ return [
     'alreadyAccount' => 'Already have an account?',
     'yourName' => 'Your name',
     'yourSurname' => 'Your surname',
+    'profile' => 'Profile',
+    'user' => 'User',
+    'settings' => 'Settings',
+    'account' => 'Account',
+    'estadisticas' => 'Estadisticas',
+    'Account setup' => 'Account setup'
 ];
 ?>
