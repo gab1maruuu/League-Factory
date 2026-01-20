@@ -16,17 +16,14 @@ return [
     'alreadyAccount' => 'Already have an account?',
     'yourName' => 'Your name',
     'yourSurname' => 'Your surname',
-<<<<<<< HEAD
     'user_admin' => 'User Administration',
     'modify_teams' => 'Modify Teams',
     'modify_leagues' => 'Modify Leagues',
-=======
     'profile' => 'Profile',
     'user' => 'User',
     'settings' => 'Settings',
     'account' => 'Account',
     'estadisticas' => 'Estadisticas',
     'Account setup' => 'Account setup'
->>>>>>> ae073426560d9fccd3f399e50909138ae8dedfd1
 ];
 ?>
