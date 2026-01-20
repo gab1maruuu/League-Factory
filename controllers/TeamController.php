@@ -13,6 +13,11 @@ class TeamController {
     }
 
     public function create() {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=login');
+            exit;
+        }
+
         if (!isset($_SESSION['user_role']) || !in_array($_SESSION['user_role'], ['admin', 'organizador', 'usuario'])) {
             $_SESSION['error'] = 'No tienes permisos para crear equipos.';
             header('Location: index.php?action=home');

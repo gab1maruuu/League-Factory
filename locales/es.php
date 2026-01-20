@@ -25,5 +25,9 @@ return [
     'account' => 'Cuenta',
     'estadisticas' => 'Estadisticas',
     'Account setup' => 'Configuración de cuenta',
+    'Scored goals' => 'Goles anotados',
+    'Matches played' => 'Partidos jugados',
+    'Referees' => 'Árbitros',
+    'Active leagues' => 'Ligas activas',
 ];
 ?>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 require_once 'config/Database.php';
 require_once 'utils/i18n.php';
 require_once 'controllers/UserController.php';

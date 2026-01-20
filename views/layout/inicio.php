@@ -74,10 +74,10 @@
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <?php
             $stats = [
-                ["n" => "2,450", "t" => "Partidos Jugados"],
-                ["n" => "12,800", "t" => "Goles Anotados"],
-                ["n" => "350", "t" => "Árbitros"],
-                ["n" => "85", "t" => "Ligas Activas"]
+                ["n" => "2,450", "t" => __('Matches played')],
+                ["n" => "12,800", "t" => __('Scored goals')],
+                ["n" => "350", "t" => __('Referees')],
+                ["n" => "85", "t" => __('Active leagues')]
             ];
             foreach ($stats as $s): ?>
                 <div class="scroll-reveal">
@@ -127,7 +127,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <?php
-                // DATOS DE FÚTBOL
                 $ligas = [
                     ["tipo" => "Fútbol 7", "nombre" => "Liga de los Lunes", "estado" => "Inscripciones", "horario" => "Lun 20:00h", "equipos" => "8/12"],
                     ["tipo" => "Fútbol 11", "nombre" => "División de Honor", "estado" => "En Juego", "horario" => "Sáb Mañana", "equipos" => "16/16"],
@@ -138,7 +137,6 @@
                 ];
 
                 foreach ($ligas as $liga):
-                    // Lógica de colores según estado
                     $badgeColor = match ($liga['estado']) {
                         'Inscripciones' => 'bg-indigo-500 text-black',
                         'Últimas Plazas' => 'bg-amber-400 text-black',

@@ -24,6 +24,10 @@ return [
     'settings' => 'Settings',
     'account' => 'Account',
     'estadisticas' => 'Estadisticas',
-    'Account setup' => 'Account setup'
+    'Account setup' => 'Account setup',
+    'Scored goals' => 'Scored goals',
+    'Matches played' => 'Matches played',
+    'Referees' => 'Referees',
+    'Active leagues' => 'Active leagues',
 ];
 ?>
