@@ -42,7 +42,8 @@
         <div class="scroll-reveal space-y-8 max-w-4xl">
             <span
                 class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-bold tracking-widest uppercase">
-                Gestión Profesional de Ligas
+                <?php echo __('hero_tagline'); ?>
+
             </span>
 
             <h1 class="text-6xl md:text-8xl font-black text-white tracking-tighter drop-shadow-xl">
@@ -53,18 +54,17 @@
             </h1>
 
             <p class="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-                Organiza tu liga de <strong>Fútbol 7, 11 o Sala</strong> como un profesional. Calendarios automáticos,
-                actas digitales y estadísticas en tiempo real.
+                <?php echo __('hero_description'); ?>
             </p>
 
             <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#ligas"
                     class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-indigo hover:scale-105">
-                    Buscar Equipo
+                    <?php echo __('find_team'); ?>
                 </a>
                 <button
                     class="px-8 py-4 bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-white font-bold rounded-xl transition-all">
-                    Crear mi Liga
+                    <?php echo __('create_my_league'); ?>
                 </button>
             </div>
         </div>
@@ -90,92 +90,26 @@
 
     <section class="py-24 px-4 max-w-7xl mx-auto">
         <div class="text-center mb-16 scroll-reveal">
-            <h2 class="text-3xl font-bold text-white mb-4">Herramientas de Primera División</h2>
-            <p class="text-zinc-500">Todo lo que necesitas para gestionar el torneo del barrio o una liga federada.</p>
+            <h2 class="text-3xl font-bold text-white mb-4"><?php echo __('tools_title'); ?></h2>
+            <p class="text-zinc-500"><?php echo __('tools_subtitle'); ?></p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div
                 class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
-                <h3 class="text-xl font-bold text-white mb-2">Actas Digitales</h3>
-                <p class="text-zinc-400 text-sm">Los árbitros suben los resultados, goles y tarjetas desde el móvil al
-                    instante.</p>
+                <h3 class="text-xl font-bold text-white mb-2"><?php echo __('digital_records_title'); ?></h3>
+                <p class="text-zinc-400 text-sm"><?php echo __('digital_records_desc'); ?></p>
             </div>
             <div
                 class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
-                <h3 class="text-xl font-bold text-white mb-2">Estadísticas MVP</h3>
-                <p class="text-zinc-400 text-sm">Ranking automático de pichichis, zamoras (porteros) y asistencias.</p>
+                <h3 class="text-xl font-bold text-white mb-2"><?php echo __('mvp_stats_title'); ?></h3>
+                <p class="text-zinc-400 text-sm"><?php echo __('mvp_stats_desc'); ?></p>
             </div>
             <div
                 class="scroll-reveal p-8 bg-zinc-900 rounded-2xl border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
-                <h3 class="text-xl font-bold text-white mb-2">Calendario Auto</h3>
-                <p class="text-zinc-400 text-sm">Genera ligas de ida y vuelta o torneos de eliminación con un solo clic.
+                <h3 class="text-xl font-bold text-white mb-2"><?php echo __('auto_calendar_title'); ?></h3>
+                <p class="text-zinc-400 text-sm"><?php echo __('auto_calendar_desc'); ?>
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="ligas" class="py-24 bg-zinc-900/20 border-y border-zinc-800">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-end mb-12 scroll-reveal">
-                <div>
-                    <h2 class="text-4xl font-bold text-white">Ligas Disponibles</h2>
-                    <p class="text-zinc-400 mt-2">Inscribe a tu equipo en las mejores competiciones.</p>
-                </div>
-                <a href="#" class="hidden md:block text-indigo-400 font-bold hover:text-indigo-300">Ver todas</a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <?php
-                $ligas = [
-                    ["tipo" => "Fútbol 7", "nombre" => "Liga de los Lunes", "estado" => "Inscripciones", "horario" => "Lun 20:00h", "equipos" => "8/12"],
-                    ["tipo" => "Fútbol 11", "nombre" => "División de Honor", "estado" => "En Juego", "horario" => "Sáb Mañana", "equipos" => "16/16"],
-                    ["tipo" => "Futsal", "nombre" => "Torneo Relámpago", "estado" => "Últimas Plazas", "horario" => "Vie Noche", "equipos" => "10/12"],
-                    ["tipo" => "Fútbol 7", "nombre" => "Liga Veteranos +30", "estado" => "En Juego", "horario" => "Dom Tarde", "equipos" => "14/14"],
-                    ["tipo" => "Empresas", "nombre" => "Copa Corporativa", "estado" => "Inscripciones", "horario" => "Jue 19:00h", "equipos" => "2/10"],
-                    ["tipo" => "Fútbol 7", "nombre" => "Liga Universitaria", "estado" => "En Juego", "horario" => "Mié Tarde", "equipos" => "20/20"],
-                ];
-
-                foreach ($ligas as $liga):
-                    $badgeColor = match ($liga['estado']) {
-                        'Inscripciones' => 'bg-indigo-500 text-black',
-                        'Últimas Plazas' => 'bg-amber-400 text-black',
-                        'En Juego' => 'bg-zinc-700 text-white',
-                    };
-                    ?>
-                    <div
-                        class="scroll-reveal relative group bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-indigo-600 transition-all duration-300 hover:-translate-y-1">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-4">
-                                <?php echo $liga['tipo']; ?>
-                                </span>
-                                <span class="text-xs font-bold px-3 py-1 rounded-full <?php echo $badgeColor; ?>">
-                                    <?php echo $liga['estado']; ?>
-                                </span>
-                            </div>
-
-                            <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
-                                <?php echo $liga['nombre']; ?>
-                            </h3>
-
-                            <div class="space-y-2 mt-4">
-                                <div class="flex items-center text-sm text-zinc-400">
-                                    <?php echo $liga['horario']; ?>
-                                </div>
-                                <div class="flex items-center text-sm text-zinc-400">
-                                    <?php echo $liga['equipos']; ?> Equipos
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 bg-zinc-950/50 border-t border-zinc-800">
-                            <button
-                                class="w-full py-2 rounded-lg bg-zinc-800 text-white font-medium hover:bg-indigo-600 transition-colors text-sm">
-                                Ver Clasificación
-                            </button>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
             </div>
         </div>
     </section>

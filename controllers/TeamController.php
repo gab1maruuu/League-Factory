@@ -40,7 +40,7 @@ class TeamController {
 
         $nombre = $_POST['nombre'] ?? '';
         $escudo_url = $_POST['escudo_url'] ?? '';
-        $capitan_id = $_POST['capitan_id'] ?? null; // Optional, or handle as needed
+        $capitan_id = !empty($_POST['capitan_id']) ? $_POST['capitan_id'] : null;
 
         if (empty($nombre)) {
             $_SESSION['error'] = 'El nombre del equipo es obligatorio.';
@@ -54,12 +54,22 @@ class TeamController {
             'capitan_id' => $capitan_id
         ];
 
-        if ($this->team->insert($data)) {
-            $_SESSION['success'] = 'Equipo creado exitosamente.';
-            header('Location: index.php?action=home'); // Redirect to home or team list
-            exit;
-        } else {
-            $_SESSION['error'] = 'Error al crear el equipo.';
+        try {
+            if ($this->team->insert($data)) {
+                $_SESSION['success'] = 'Equipo creado exitosamente.';
+                header('Location: index.php?action=home'); // Redirect to home or team list
+                exit;
+            } else {
+                $_SESSION['error'] = 'Error al crear el equipo.';
+                header('Location: index.php?action=create_team');
+                exit;
+            }
+        } catch (PDOException $e) {
+            if ($e->getCode() == '23000') { // Integrity constraint violation
+                $_SESSION['error'] = 'El ID del capitán proporcionado no es válido (no existe el usuario).';
+            } else {
+                $_SESSION['error'] = 'Error de base de datos: ' . $e->getMessage();
+            }
             header('Location: index.php?action=create_team');
             exit;
         }
