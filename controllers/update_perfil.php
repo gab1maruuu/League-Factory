@@ -14,24 +14,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['avatar'])) {
     $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
     $allowed = array('jpg', 'jpeg', 'png', 'webp');
 
-    if (in_array($ext, $allowed)) {
-        if ($file_error === 0) {
-            if ($file_size <= 2000000) { // Limitar a 2MB
-                
-                // 3. Crear un nombre único (ej: 65af23..._foto.jpg)
-                $new_file_name = uniqid('', true) . "." . $ext;
-                
-                // 4. Ruta donde se guardará físicamente
-                $destiny = "../public/images/uploads/" . $new_file_name;
+    // Validar extensión
+    if (!in_array($ext, $allowed)) {
+        $_SESSION['upload_error'] = 'invalid_extension';
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
 
-                if (move_uploaded_file($file_tmp, $destiny)) {
-                    // 5. Actualizar la variable de sesión para que se vea el cambio
-                    $_SESSION['user_photo'] = "/public/images/uploads/" . $new_file_name;
-                    
-                    // 6. Redirigir de vuelta al perfil
-                    header("Location: ../index.php?success=profile_updated");
-                }
-            }
-        }
+    // Validar errores de subida
+    if ($file_error !== 0) {
+        $_SESSION['upload_error'] = 'upload_error';
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    // Validar tamaño (2MB)
+    if ($file_size > 2000000) {
+        $_SESSION['upload_error'] = 'file_too_large';
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    // 3. Crear carpeta si no existe
+    $upload_dir = "../public/images/uploads/";
+    if (!is_dir($upload_dir)) {
+        mkdir($upload_dir, 0755, true);
+    }
+
+    // 4. Crear un nombre único
+    $new_file_name = uniqid('', true) . "." . $ext;
+    $destiny = $upload_dir . $new_file_name;
+
+    // 5. Mover archivo y actualizar sesión
+    if (move_uploaded_file($file_tmp, $destiny)) {
+        $_SESSION['user_photo'] = "/public/images/uploads/" . $new_file_name;
+        $_SESSION['upload_success'] = true;
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
+    } else {
+        $_SESSION['upload_error'] = 'move_failed';
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
     }
 }

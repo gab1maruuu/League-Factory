@@ -6,13 +6,35 @@
     <title>Perfil - League Factory</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen ">
+<body class="min-h-screen bg-[#121212]">
     <main class="w-full max-w-6xl px-6 py-12 mx-auto">
+
+        <?php if (isset($_SESSION['upload_error'])): ?>
+            <div class="mb-6 p-4 bg-red-900/20 border border-red-800 rounded-lg text-red-400 text-sm">
+                <?php 
+                    $errors = [
+                        'invalid_extension' => 'El formato de imagen no es válido. Usa JPG, PNG o WEBP.',
+                        'upload_error' => 'Error al subir el archivo.',
+                        'file_too_large' => 'El archivo es demasiado grande. Máximo 2MB.',
+                        'move_failed' => 'No se pudo guardar la imagen. Intenta de nuevo.'
+                    ];
+                    echo $errors[$_SESSION['upload_error']] ?? 'Error desconocido.';
+                    unset($_SESSION['upload_error']);
+                ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['upload_success'])): ?>
+            <div class="mb-6 p-4 bg-green-900/20 border border-green-800 rounded-lg text-green-400 text-sm">
+                Imagen de perfil actualizada correctamente.
+            </div>
+            <?php unset($_SESSION['upload_success']); ?>
+        <?php endif; ?>
 
         <section class="flex items-center mb-10">
             <form action="/controllers/update_perfil.php" method="POST" enctype="multipart/form-data" id="form-avatar">
                 <label for="input-file" class="cursor-pointer relative group block w-40 h-35">
-                    <img src="/public/images/perfil.png" class="h-full w-full opacity-80 group-hover:opacity-40 transition duration-300 rounded-lg object-cover" alt="Foto de perfil">
+                    <img src="<?php echo $_SESSION['user_photo'] ?? '/public/images/perfil.png'; ?>" class="h-full w-full opacity-80 group-hover:opacity-40 transition duration-300 rounded-lg object-cover" alt="Foto de perfil">
                 <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-indigo-500">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
