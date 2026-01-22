@@ -10,7 +10,7 @@
     <main class="w-full max-w-6xl px-6 py-12 mx-auto">
 
         <section class="flex items-center mb-10">
-            <form action="/controllers/update_photo.php" method="POST" enctype="multipart/form-data" id="form-avatar">
+            <form action="/controllers/update_perfil.php" method="POST" enctype="multipart/form-data" id="form-avatar">
                 <label for="input-file" class="cursor-pointer relative group block w-40 h-35">
                     <img src="/public/images/perfil.png" class="h-full w-full opacity-80 group-hover:opacity-40 transition duration-300 rounded-lg object-cover" alt="Foto de perfil">
                 <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
@@ -33,18 +33,6 @@
             </div>
         </section>
 
-        <nav class="flex border-b border-gray-800 mb-14 space-x-8">
-            <a href="#" class="pb-4 text-sm font-bold border-b-2 border-indigo-600 text-white">
-                <?php echo __('settings') ?>
-            </a>
-            <a href="#" class="pb-4 text-sm font-bold text-gray-400 hover:text-white transition duration-300">
-                <?php echo __('account') ?>
-            </a>
-            <a href="#" class="pb-4 text-sm font-bold text-gray-400 hover:text-white transition duration-300">
-                <?php echo __('estadisticas') ?>
-            </a>
-        </nav>
-
         <section class="space-y-12 mb-10"> 
             <h2 class="w-fit flex text-lg font-bold uppercase tracking-wider text-gray-200 mb-8 space-x-8 border-b-2 border-gray-700">
                 <?php echo __('Account setup') ?>
@@ -53,14 +41,14 @@
                 <h3 class="text-gray-300 uppercase tracking-wider font-bold mb-5">Tu identidad</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
-                    <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Nombre y apellido</label>
-                    <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_name']) . " " . ($_SESSION['user_surname']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
+                    <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Nombre</label>
+                    <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_name']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
                 </div>
                 
                 <div class="space-y-2">
-                    <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Nombre de usuario</label>
-                    <input type="text" name="username" value="" placeholder="Escribe tu nombre de usuario" 
-                    class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
+                    <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Apellido</label>
+                    <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_surname']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
+
                 </div>
                 <div class="space-y-2 md:col-span-2">
                     <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Correo Electrónico</label>
