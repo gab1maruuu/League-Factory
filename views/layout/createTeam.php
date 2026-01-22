@@ -19,7 +19,7 @@
             animation: fadeInUp 0.6s ease-out forwards;
         }
     </style>
-    <title>Crear Equipo</title>
+    <title><?php echo __('create_team_title'); ?></title>
 </head>
 <body class="bg-zinc-950 text-zinc-200 font-sans overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 
@@ -31,13 +31,13 @@
             
             <div class="test-center mb-8">
                 <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-bold tracking-widest uppercase mb-4">
-                    Nueva Alta
+                    <?php echo __('new_entry'); ?>
                 </span>
                 <h1 class="text-4xl font-black text-white tracking-tighter drop-shadow-xl mb-2">
-                    Crear Equipo
+                    <?php echo __('create_team_title'); ?>
                 </h1>
                 <p class="text-zinc-400">
-                    Registra un nuevo equipo para que comience a competir en la liga.
+                    <?php echo __('create_team_desc'); ?>
                 </p>
             </div>
 
@@ -50,34 +50,34 @@
             <form action="index.php?action=store_team" method="POST" enctype="multipart/form-data" class="space-y-6">
                 
                 <div class="space-y-2">
-                    <label for="nombre" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider">Nombre del Equipo</label>
+                    <label for="nombre" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider"><?php echo __('team_name'); ?></label>
                     <input type="text" id="nombre" name="nombre" 
                         class="w-full px-4 py-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium"
-                        placeholder="Ej. Rayo Vallecano" required>
+                        placeholder="<?php echo __('team_name_placeholder'); ?>" required>
                 </div>
 
                 <div class="space-y-2">
-                    <label for="escudo" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider">Escudo (PNG)</label>
+                    <label for="escudo" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider"><?php echo __('badge_png'); ?></label>
                     <input type="file" id="escudo" name="escudo" accept="image/png"
                         class="w-full px-4 py-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500">
                 </div>
 
                 <div class="space-y-2">
-                    <label for="capitan_id" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider">ID del Capitán</label>
+                    <label for="capitan_id" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider"><?php echo __('captain_id'); ?></label>
                     <input type="number" id="capitan_id" name="capitan_id" 
                         class="w-full px-4 py-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium"
-                        placeholder="ID de usuario (opcional)">
-                    <p class="text-xs text-zinc-500">Puedes asignar un capitán más tarde si lo prefieres.</p>
+                        placeholder="<?php echo __('captain_id_placeholder'); ?>">
+                    <p class="text-xs text-zinc-500"><?php echo __('captain_hint'); ?></p>
                 </div>
 
                 <div class="pt-4 flex flex-col sm:flex-row gap-4">
                     <button type="submit" 
                         class="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-900/20 hover:scale-[1.02] active:scale-[0.98]">
-                        Crear Equipo
+                        <?php echo __('create_team_title'); ?>
                     </button>
                     <a href="index.php?action=home" 
                         class="w-full sm:w-auto py-4 px-8 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white font-bold rounded-xl transition-all text-center hover:scale-[1.02] active:scale-[0.98]">
-                        Cancelar
+                        <?php echo __('cancel'); ?>
                     </a>
                 </div>
 

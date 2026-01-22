@@ -38,5 +38,28 @@ return [
     'mvp_stats_desc' => 'Automatic ranking of top scorers, goalkeepers, and assists.',
     'auto_calendar_title' => 'Auto Calendar',
     'auto_calendar_desc' => 'Generate round-robin leagues or elimination tournaments with a single click.',
+    'new_entry' => 'New Entry',
+    'create_team_title' => 'Create Team',
+    'create_team_desc' => 'Register a new team to start competing in the league.',
+    'team_name' => 'Team Name',
+    'team_name_placeholder' => 'Ex. Rayo Vallecano',
+    'badge_png' => 'Badge (PNG)',
+    'captain_id' => 'Captain ID',
+    'captain_id_placeholder' => 'User ID (optional)',
+    'captain_hint' => 'You can assign a captain later if you prefer.',
+    'cancel' => 'Cancel',
+
+    'active_competition' => 'Active Competition',
+    'search_league' => 'Search your League',
+    'join_league_desc' => 'Join open leagues for this week. Registration closes every Sunday.',
+    'no_leagues' => 'No leagues available at the moment.',
+    'status_closed' => 'Closed',
+    'status_soon' => 'Coming Soon',
+    'status_open' => 'Open',
+    'join_btn' => 'Join',
+    'back_home' => '← Back to Home',
+
+    'mvc_arch' => 'MVC Architecture',
+    'all_rights' => 'All rights reserved.',
 ];
 ?>

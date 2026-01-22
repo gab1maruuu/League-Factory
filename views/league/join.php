@@ -5,19 +5,19 @@
             <div class="text-center mb-16">
                 <span
                     class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-bold tracking-widest uppercase mb-4">
-                    Competición Activa
+                    <?php echo __('active_competition'); ?>
                 </span>
                 <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter drop-shadow-xl mb-4">
-                    Busca tu Liga
+                    <?php echo __('search_league'); ?>
                 </h1>
                 <p class="text-zinc-400 max-w-2xl mx-auto">
-                    Únete a las ligas abiertas para esta semana. Las inscripciones cierran cada domingo.
+                    <?php echo __('join_league_desc'); ?>
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <?php if (empty($leagues)): ?>
-                    <p class="text-center text-zinc-500 col-span-full">No hay ligas disponibles en este momento.</p>
+                    <p class="text-center text-zinc-500 col-span-full"><?php echo __('no_leagues'); ?></p>
                 <?php else: ?>
                     <?php foreach ($leagues as $league): ?>
                         <?php
@@ -38,7 +38,7 @@
                         $isJoinable = ($league['estado'] === 'en_curso' || $league['estado'] === 'abierta');
                         $cardOpacity = $isJoinable ? 'opacity-100' : 'opacity-50 grayscale';
                         $borderColor = $isJoinable ? 'border-zinc-800 hover:border-indigo-500/50' : 'border-zinc-800/50';
-                        $statusText = $league['estado'] === 'finalizada' ? 'Cerrada' : ($league['estado'] === 'abierta' ? 'Próximamente' : 'Abierta');
+                        $statusText = $league['estado'] === 'finalizada' ? __('status_closed') : ($league['estado'] === 'abierta' ? __('status_soon') : __('status_open'));
                         $statusColor = $league['estado'] === 'finalizada' ? 'text-zinc-500' : ($league['estado'] === 'abierta' ? 'text-teal-400' : 'text-green-400');
                         ?>
 
@@ -69,11 +69,11 @@
                                 <?php if ($isJoinable): ?>
                                     <a href="index.php?action=join_specific_league&id=<?php echo $league['id']; ?>" 
                                        class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-indigo-900/20">
-                                        Unirse
+                                        <?php echo __('join_btn'); ?>
                                     </a>
                                 <?php else: ?>
                                     <button disabled class="px-4 py-2 bg-zinc-800 text-zinc-500 text-sm font-bold rounded-lg cursor-not-allowed">
-                                        Cerrada
+                                        <?php echo __('status_closed'); ?>
                                     </button>
                                 <?php endif; ?>
                             </div>
@@ -84,7 +84,7 @@
             
             <div class="mt-12 text-center">
                 <a href="index.php?action=home" class="text-zinc-500 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">
-                    ← Volver al inicio
+                    <?php echo __('back_home'); ?>
                 </a>
             </div>
     </section>

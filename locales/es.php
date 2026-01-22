@@ -38,5 +38,28 @@ return [
     'mvp_stats_desc' => 'Ranking automático de pichichis, zamoras (porteros) y asistencias.',
     'auto_calendar_title' => 'Calendario Auto',
     'auto_calendar_desc' => 'Genera ligas de ida y vuelta o torneos de eliminación con un solo clic.',
+    'new_entry' => 'Nueva Alta',
+    'create_team_title' => 'Crear Equipo',
+    'create_team_desc' => 'Registra un nuevo equipo para que comience a competir en la liga.',
+    'team_name' => 'Nombre del Equipo',
+    'team_name_placeholder' => 'Ej. Rayo Vallecano',
+    'badge_png' => 'Escudo (PNG)',
+    'captain_id' => 'ID del Capitán',
+    'captain_id_placeholder' => 'ID de usuario (opcional)',
+    'captain_hint' => 'Puedes asignar un capitán más tarde si lo prefieres.',
+    'cancel' => 'Cancelar',
+
+    'active_competition' => 'Competición Activa',
+    'search_league' => 'Busca tu Liga',
+    'join_league_desc' => 'Únete a las ligas abiertas para esta semana. Las inscripciones cierran cada domingo.',
+    'no_leagues' => 'No hay ligas disponibles en este momento.',
+    'status_closed' => 'Cerrada',
+    'status_soon' => 'Próximamente',
+    'status_open' => 'Abierta',
+    'join_btn' => 'Unirse',
+    'back_home' => '← Volver al inicio',
+
+    'mvc_arch' => 'Arquitectura MVC',
+    'all_rights' => 'Todos los derechos reservados.',
 ];
 ?>
