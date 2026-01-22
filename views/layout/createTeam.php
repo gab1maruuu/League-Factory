@@ -47,7 +47,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="index.php?action=store_team" method="POST" class="space-y-6">
+            <form action="index.php?action=store_team" method="POST" enctype="multipart/form-data" class="space-y-6">
                 
                 <div class="space-y-2">
                     <label for="nombre" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider">Nombre del Equipo</label>
@@ -57,10 +57,9 @@
                 </div>
 
                 <div class="space-y-2">
-                    <label for="escudo_url" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider">URL del Escudo</label>
-                    <input type="url" id="escudo_url" name="escudo_url" 
-                        class="w-full px-4 py-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium"
-                        placeholder="https://ejemplo.com/escudo.png">
+                    <label for="escudo" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider">Escudo (PNG)</label>
+                    <input type="file" id="escudo" name="escudo" accept="image/png"
+                        class="w-full px-4 py-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500">
                 </div>
 
                 <div class="space-y-2">

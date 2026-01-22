@@ -21,6 +21,12 @@ class League
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function findAllSorted()
+    {
+        $stmt = $this->db->query("SELECT * FROM ligas ORDER BY fecha_creacion DESC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function create($data)
     {
         $sql = "INSERT INTO ligas (nombre, descripcion, deporte, temporada, estado, creado_por) 

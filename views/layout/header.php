@@ -23,7 +23,7 @@
                 <ul class="flex flex-row gap-6 text-sm font-medium items-center">
                     <li><a href="index.php?action=home" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('home'); ?></a></li>
                     <li><a href="index.php?action=create_team" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('create_team'); ?></a></li>
-                    <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('join_league'); ?></a></li>
+                    <li><a href="index.php?action=join_league" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('join_league'); ?></a></li>
                     <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('ranking'); ?></a></li>
 
                 <?php if (isset($_SESSION['user_id'])): ?>

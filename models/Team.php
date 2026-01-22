@@ -39,7 +39,7 @@ class Team
 
     public function insert($data)
     {
-        $allowed = ['nombre', 'escudo_url', 'capitan_id'];
+        $allowed = ['nombre', 'escudo_url', 'capitan_id', 'creado_por'];
         $data = array_intersect_key($data, array_flip($allowed));
         
         $columns = implode(", ", array_keys($data));

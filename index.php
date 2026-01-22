@@ -39,11 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+
 include __DIR__ . "/views/layout/header.php";
 
 switch ($action) {
     case 'home':
         include __DIR__ . "/views/layout/inicio.php";
+        break;
+
+    case 'join_league':
+        (new LeagueController())->joinList();
         break;
 
     case 'profile':

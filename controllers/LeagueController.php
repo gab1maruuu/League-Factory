@@ -19,6 +19,15 @@ class LeagueController
         require_once 'views/league/index.php';
     }
 
+    public function joinList()
+    {
+        // Check if user is logged in? Maybe not strictly required to VIEW, but required to JOIN.
+        // Let's allow viewing.
+        
+        $leagues = $this->league->findAllSorted();
+        require_once 'views/league/join.php';
+    }
+
     public function updateLeague()
     {
         if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
