@@ -29,5 +29,17 @@ return [
     'Matches played' => 'Partidos jugados',
     'Referees' => 'Árbitros',
     'Active leagues' => 'Ligas activas',
+    'hero_tagline' => 'Gestión Profesional de Ligas',
+    'hero_description' => 'Organiza tu liga de <strong>Fútbol 7, 11 o Sala</strong> como un profesional. Calendarios automáticos, actas digitales y estadísticas en tiempo real.',
+    'find_team' => 'Buscar Equipo',
+    'create_my_league' => 'Crear mi Liga',
+    'tools_title' => 'Herramientas de Primera División',
+    'tools_subtitle' => 'Todo lo que necesitas para gestionar el torneo del barrio o una liga federada.',
+    'digital_records_title' => 'Actas Digitales',
+    'digital_records_desc' => 'Los árbitros suben los resultados, goles y tarjetas desde el móvil al instante.',
+    'mvp_stats_title' => 'Estadísticas MVP',
+    'mvp_stats_desc' => 'Ranking automático de pichichis, zamoras (porteros) y asistencias.',
+    'auto_calendar_title' => 'Calendario Auto',
+    'auto_calendar_desc' => 'Genera ligas de ida y vuelta o torneos de eliminación con un solo clic.',
 ];
 ?>

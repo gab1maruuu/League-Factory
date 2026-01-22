@@ -10,6 +10,7 @@ CREATE TABLE usuarios (
     email VARCHAR(100) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL, -- Recuerda usar password_hash() en PHP
     rol ENUM('admin', 'organizador', 'usuario') DEFAULT 'usuario',
+    foto_perfil VARCHAR(255),
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
@@ -33,6 +34,8 @@ CREATE TABLE equipos (
     escudo_url VARCHAR(255), -- URL a la imagen del logo
     capitan_id INT, -- Usuario que gestiona el equipo
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    creado_por INT NOT NULL, -- El usuario organizador
+    FOREIGN KEY (creado_por) REFERENCES usuarios(id) ON DELETE CASCADE,
     FOREIGN KEY (capitan_id) REFERENCES usuarios(id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 

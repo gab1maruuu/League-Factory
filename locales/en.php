@@ -29,5 +29,17 @@ return [
     'Matches played' => 'Matches played',
     'Referees' => 'Referees',
     'Active leagues' => 'Active leagues',
+    'hero_tagline' => 'Professional League Management',
+    'hero_description' => 'Organize your <strong>Football 7, 11 or Indoor</strong> league like a professional. Automatic calendars, digital records and real-time statistics.',
+    'find_team' => 'Find Team',
+    'create_my_league' => 'Create my League',
+    'tools_title' => 'First Division Tools',
+    'tools_subtitle' => 'Everything you need to manage the neighborhood tournament or a federated league.',
+    'digital_records_title' => 'Digital Match Reports',
+    'digital_records_desc' => 'Referees upload results, goals, and cards from mobile instantly.',
+    'mvp_stats_title' => 'MVP Statistics',
+    'mvp_stats_desc' => 'Automatic ranking of top scorers, goalkeepers, and assists.',
+    'auto_calendar_title' => 'Auto Calendar',
+    'auto_calendar_desc' => 'Generate round-robin leagues or elimination tournaments with a single click.',
 ];
 ?>
