@@ -6,12 +6,13 @@ require_once 'utils/i18n.php';
 require_once 'controllers/UserController.php';
 require_once 'controllers/PostController.php';
 require_once 'controllers/TeamController.php';
+require_once 'controllers/LeagueController.php';
 
 $action = $_GET['action'] ?? 'home';
 
 
 if ($action === 'logout') {
-    (new UserController())->logout(); 
+    (new UserController())->logout();
     exit;
 }
 
@@ -32,6 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         (new UserController())->updateTeam();
         exit;
     }
+    if ($action === 'update_league') {
+        (new LeagueController())->updateLeague();
+        exit;
+    }
 }
 
 include __DIR__ . "/views/layout/header.php";
@@ -45,17 +50,15 @@ switch ($action) {
         (new UserController())->profile();
         break;
 
-    case 'login': 
+    case 'login':
         (new UserController())->showLogin();
-        break;
-        
-    case 'register': 
-        (new UserController())->showRegister(); 
         break;
 
     case 'register':
-        (new UserController())->showRegister(); 
+        (new UserController())->showRegister();
         break;
+
+
 
     case 'posts':
         (new PostController())->index();
