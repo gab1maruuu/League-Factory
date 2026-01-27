@@ -24,6 +24,7 @@ CREATE TABLE ligas (
     estado ENUM('abierta', 'en_curso', 'finalizada') DEFAULT 'abierta',
     creado_por INT NOT NULL, -- El usuario organizador
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_limite_inscripcion DATETIME DEFAULT NULL,
     FOREIGN KEY (creado_por) REFERENCES usuarios(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
