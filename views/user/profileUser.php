@@ -35,8 +35,10 @@
 
         <section class="flex items-center mb-10">
             <form action="/controllers/update_perfil.php" method="POST" enctype="multipart/form-data" id="form-avatar">
-                <label for="input-file" class="cursor-pointer relative group block w-40 h-35">
-                    <img src="<?php echo $_SESSION['user_photo'] ?? '/public/images/perfil.png'; ?>" class="h-full w-full opacity-80 group-hover:opacity-40 transition duration-300 rounded-lg object-cover" alt="Foto de perfil">
+                <label for="input-file" class="cursor-pointer relative group block w-40 h-40 overflow-hidden rounded-full border-4 border-zinc-800 shadow-2xl">
+                    <img src="<?php echo (!empty($_SESSION['user_photo'])) ? $_SESSION['user_photo'] : '/public/images/perfil.png'; ?>"
+                        class="h-full w-full object-cover opacity-90 group-hover:opacity-40 transition-all duration-500"
+                        alt="Foto de perfil">
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-indigo-500">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
@@ -57,13 +59,19 @@
             </div>
         </section>
 
+
         <section class="space-y-12 mb-10">
             <h2 class="w-fit flex text-lg font-bold uppercase tracking-wider text-gray-200 mb-8 space-x-8 border-b-2 border-gray-700">
                 <?php echo __('Account setup') ?>
             </h2>
             <div>
                 <h3 class="text-gray-300 uppercase tracking-wider font-bold mb-5">Tu identidad</h3>
+                <div class="space-y-2 mb-5">
+                        <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Nombre de usuario</label>
+                        <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_name']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
+                    </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
                     <div class="space-y-2">
                         <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Nombre</label>
                         <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_name']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
