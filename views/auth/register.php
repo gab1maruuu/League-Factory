@@ -53,6 +53,14 @@
                     </div>
 
                     <div>
+                        <label for="username" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Usuario</label>
+                        <input type="text" name="username" id="username"
+                            class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
+                            placeholder="Nombre de usuario" 
+                            value="<?php echo isset($_SESSION['old_input']['username']) ? htmlspecialchars($_SESSION['old_input']['username']) : ''; ?>" required>
+                    </div>
+
+                    <div>
                         <label for="email" class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2"><?php echo __('email'); ?></label>
                         <input type="email" name="email" id="email"
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"

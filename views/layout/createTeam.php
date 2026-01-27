@@ -62,13 +62,7 @@
                         class="w-full px-4 py-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500">
                 </div>
 
-                <div class="space-y-2">
-                    <label for="capitan_id" class="block text-sm font-bold text-zinc-300 uppercase tracking-wider"><?php echo __('captain_id'); ?></label>
-                    <input type="number" id="capitan_id" name="capitan_id" 
-                        class="w-full px-4 py-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium"
-                        placeholder="<?php echo __('captain_id_placeholder'); ?>">
-                    <p class="text-xs text-zinc-500"><?php echo __('captain_hint'); ?></p>
-                </div>
+                <!-- Captain ID removed -->
 
                 <div class="pt-4 flex flex-col sm:flex-row gap-4">
                     <button type="submit" 

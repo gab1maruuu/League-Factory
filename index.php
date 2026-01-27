@@ -7,6 +7,7 @@ require_once 'controllers/UserController.php';
 require_once 'controllers/PostController.php';
 require_once 'controllers/TeamController.php';
 require_once 'controllers/LeagueController.php';
+require_once 'controllers/MyTeamsController.php';
 
 $action = $_GET['action'] ?? 'home';
 
@@ -83,6 +84,30 @@ switch ($action) {
             exit;
         }
         (new UserController())->getAllUsers();
+        break;
+
+    case 'my_teams':
+        (new MyTeamsController())->index();
+        break;
+    
+    case 'manage_team':
+        (new MyTeamsController())->manage();
+        break;
+
+    case 'update_team_photo':
+        (new MyTeamsController())->updatePhoto();
+        break;
+
+    case 'add_member':
+        (new MyTeamsController())->addMember();
+        break;
+
+    case 'remove_member':
+        (new MyTeamsController())->removeMember();
+        break;
+
+    case 'search_user':
+        (new MyTeamsController())->searchUser();
         break;
 
     default:
