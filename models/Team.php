@@ -56,5 +56,11 @@ class Team
         $stmt = $this->db->prepare("DELETE FROM equipos WHERE id = :id");
         return $stmt->execute(['id' => $id]);
     }
+    public function findByCaptain($userId)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM equipos WHERE capitan_id = :userId");
+        $stmt->execute(['userId' => $userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

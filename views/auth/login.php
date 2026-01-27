@@ -30,11 +30,11 @@
 
                 <form action="index.php?action=login" method="POST" class="space-y-6">
                     <div>
-                        <label for="email"
-                            class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Email</label>
-                        <input type="email" name="email" id="email" placeholder="ejemplo@leaguefactory.com" 
+                        <label for="identity"
+                            class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Email ó Usuario</label>
+                        <input type="text" name="identity" id="identity" placeholder="Usuario o Email" 
                             class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-zinc-600"
-                            value="<?php echo isset($_SESSION['old_input']['email']) ? htmlspecialchars($_SESSION['old_input']['email']) : ''; ?>" required>
+                            value="<?php echo isset($_SESSION['old_input']['identity']) ? htmlspecialchars($_SESSION['old_input']['identity']) : ''; ?>" required>
                     </div>
 
                     <div>

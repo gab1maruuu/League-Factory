@@ -21,6 +21,20 @@ class User
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
+  public function findByUsername($username)
+  {
+    $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE username = :username");
+    $stmt->execute(['username' => $username]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
+  public function findByEmailOrUsername($input)
+  {
+    $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE email = :input OR username = :input");
+    $stmt->execute(['input' => $input]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
   public function getAll()
   {
     $stmt = $this->db->query("SELECT * FROM usuarios");
@@ -29,8 +43,8 @@ class User
 
   public function insert($data)
   {
-    // Los datos vienen con claves: nombre, apellido, email, password_hash, rol
-    $stmt = $this->db->prepare("INSERT INTO usuarios (nombre, apellido, email, password_hash, rol) VALUES (:nombre, :apellido, :email, :password_hash, :rol)");
+    // Los datos vienen con claves: nombre, apellido, username, email, password_hash, rol
+    $stmt = $this->db->prepare("INSERT INTO usuarios (nombre, apellido, username, email, password_hash, rol) VALUES (:nombre, :apellido, :username, :email, :password_hash, :rol)");
     return $stmt->execute($data);
   }
 

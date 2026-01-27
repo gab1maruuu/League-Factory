@@ -39,7 +39,7 @@ class TeamController {
         }
 
         $nombre = $_POST['nombre'] ?? '';
-        $capitan_id = !empty($_POST['capitan_id']) ? $_POST['capitan_id'] : null;
+        $capitan_id = $_SESSION['user_id'];
         
         $escudo_url = '';
 

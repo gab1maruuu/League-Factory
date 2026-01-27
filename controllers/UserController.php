@@ -35,29 +35,29 @@ class UserController
       return;
     }
 
-    $email = $_POST['email'] ?? '';
+    $identity = $_POST['identity'] ?? '';
     $password = $_POST['password'] ?? '';
 
 
     // Guardamos los datos
     $_SESSION['old_input'] = $_POST;
 
-    if (empty($email) || empty($password)) {
-      $_SESSION['error'] = 'Email y contraseña son requeridos';
+    if (empty($identity) || empty($password)) {
+      $_SESSION['error'] = 'Usuario/Email y contraseña son requeridos';
       header('Location: index.php?action=login');
       exit;
     }
 
-    $userData = $this->user->findByEmail($email);
+    $userData = $this->user->findByEmailOrUsername($identity);
 
     if (!$userData) {
-      $_SESSION['error'] = 'Email o contraseña incorrectos';
+      $_SESSION['error'] = 'Usuario o contraseña incorrectos';
       header('Location: index.php?action=login');
       exit;
     }
 
     if (!password_verify($password, $userData['password_hash'])) {
-      $_SESSION['error'] = 'Email o contraseña incorrectos';
+      $_SESSION['error'] = 'Usuario o contraseña incorrectos';
       header('Location: index.php?action=login');
       exit;
     }
@@ -95,12 +95,13 @@ class UserController
 
     $name = $_POST['name'] ?? '';
     $apellido = $_POST['apellido'] ?? '';
+    $username = $_POST['username'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $password_confirm = $_POST['password_confirm'] ?? '';
 
     // Validaciones
-    if (empty($name) || empty($apellido) || empty($email) || empty($password) || empty($password_confirm)) {
+    if (empty($name) || empty($apellido) || empty($username) || empty($email) || empty($password) || empty($password_confirm)) {
       $_SESSION['error'] = 'Todos los campos son requeridos';
       header('Location: index.php?action=register');
       exit;
@@ -135,6 +136,7 @@ class UserController
     $data = [
       'nombre' => $name,
       'apellido' => $apellido,
+      'username' => $username,
       'email' => $email,
       'password_hash' => password_hash($password, PASSWORD_BCRYPT),
       'rol' => 'usuario'
