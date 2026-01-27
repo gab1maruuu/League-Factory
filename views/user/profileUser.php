@@ -68,7 +68,7 @@
                 <h3 class="text-gray-300 uppercase tracking-wider font-bold mb-5">Tu identidad</h3>
                 <div class="space-y-2 mb-5">
                         <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Nombre de usuario</label>
-                        <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_name']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
+                        <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_username']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
                     </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     

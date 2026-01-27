@@ -30,7 +30,7 @@
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="flex items-center gap-6 ml-4 border-l border-zinc-700 pl-6">
                         <a href="index.php?action=profile" class="text-indigo-400 font-bold">
-                            <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+                            <?php echo htmlspecialchars($_SESSION['user_username'] ?? $_SESSION['user_name']); ?>
                         </a>
                         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
                             <a href="adminPanel.php?action=admin"

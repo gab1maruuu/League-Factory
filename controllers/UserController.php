@@ -64,6 +64,7 @@ class UserController
 
     // Login exitoso
     $_SESSION['user_id'] = $userData['id'];
+    $_SESSION['user_username'] = $userData['username'];
     $_SESSION['user_name'] = $userData['nombre'];
     $_SESSION['user_surname'] = $userData['apellido'];
     $_SESSION['user_email'] = $userData['email'];
@@ -127,7 +128,14 @@ class UserController
 
     // Verificar si el email ya existe
     if ($this->user->findByEmail($email)) {
-      $_SESSION['error'] = 'El email ya está registrado';
+      $_SESSION['error'] = 'El correo electrónico ya está registrado';
+      header('Location: index.php?action=register');
+      exit;
+    }
+
+    // Verificar si el nombre de usuario ya existe
+    if ($this->user->findByUsername($username)) {
+      $_SESSION['error'] = 'El nombre de usuario ya está en uso';
       header('Location: index.php?action=register');
       exit;
     }
