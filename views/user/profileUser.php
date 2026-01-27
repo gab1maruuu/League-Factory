@@ -36,7 +36,7 @@
         <section class="flex items-center mb-10">
             <form action="/controllers/update_perfil.php" method="POST" enctype="multipart/form-data" id="form-avatar">
                 <label for="input-file" class="cursor-pointer relative group block w-40 h-40 overflow-hidden rounded-full border-4 border-zinc-800 shadow-2xl">
-                    <img src="<?php echo (!empty($_SESSION['user_photo'])) ? $_SESSION['user_photo'] : '/public/images/perfil.png'; ?>"
+                    <img src="<?php echo (!empty($_SESSION['user_photo'])) ? $_SESSION['user_photo'] : '/public/images/perfil.jpg'; ?>"
                         class="h-full w-full object-cover opacity-90 group-hover:opacity-40 transition-all duration-500"
                         alt="Foto de perfil">
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
@@ -49,7 +49,7 @@
                 </label>
             </form>
 
-            <div class="ml-1">
+            <div class="ml-4">
                 <h1 class="text-3xl font-bold tracking-tight mb-1"> Bienvenido
                     <span class="text-white"><?php echo htmlspecialchars($_SESSION['user_username']) ?>
                 </h1>

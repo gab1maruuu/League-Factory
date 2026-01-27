@@ -27,39 +27,44 @@
                     <li><a href="#" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('ranking'); ?></a></li>
                     <li><a href="index.php?action=my_teams" class="text-zinc-400 hover:text-white transition-colors duration-200">Tus equipos</a></li>
 
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <li class="flex items-center gap-6 ml-4 border-l border-zinc-700 pl-6">
-                        <a href="index.php?action=profile" class="text-indigo-400 font-bold">
-                            <?php echo htmlspecialchars($_SESSION['user_username'] ?? $_SESSION['user_name']); ?>
-                        </a>
-                        <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-                            <a href="adminPanel.php?action=admin"
-                                class="text-xs text-indigo-500 hover:text-indigo-400 transition-colors uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-indigo-400">
-                                <?php echo __('admin_panel'); ?>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <li class="flex items-center gap-6 ml-4 border-l border-zinc-700 pl-6">
+                            <div class="cursor-pointer relative group block w-12 h-12 overflow-hidden rounded-full border-4 border-zinc-800 shadow-2xl">
+                                <img src="<?php echo (!empty($_SESSION['user_photo'])) ? $_SESSION['user_photo'] : '/public/images/perfil.jpg'; ?>"
+                                    class="h-full w-full object-cover opacity-90"
+                                    alt="Foto de perfil">
+                            </div>
+                            <a href="index.php?action=profile" class="text-indigo-400 font-bold">
+                                <?php echo htmlspecialchars($_SESSION['user_username'] ?? $_SESSION['user_name']); ?>
                             </a>
-                        <?php endif; ?>
-                        <a href="index.php?action=logout"
-                            class="text-xs text-zinc-500 hover:text-red-400 transition-colors duration-200 uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-red-400">
-                            <?php echo __('logout'); ?>
-                        </a>
-                    </li>
-                <?php else: ?>
-                    <li>
-                        <a href="index.php?action=login"
-                            class="rounded-3xl py-1 px-4 border border-indigo-400 text-indigo-400 hover:text-indigo-300 hover:border-indigo-300 transition-colors duration-300">
-                            <?php echo __('login_register'); ?>
-                        </a>
-                    </li>
-                <?php endif; ?>
-                
+                            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                                <a href="adminPanel.php?action=admin"
+                                    class="text-xs text-indigo-500 hover:text-indigo-400 transition-colors uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-indigo-400">
+                                    <?php echo __('admin_panel'); ?>
+                                </a>
+                            <?php endif; ?>
+                            <a href="index.php?action=logout"
+                                class="text-xs text-zinc-500 hover:text-red-400 transition-colors duration-200 uppercase tracking-widest font-bold border border-zinc-700 px-3 py-1 rounded-lg hover:border-red-400">
+                                <?php echo __('logout'); ?>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <a href="index.php?action=login"
+                                class="rounded-3xl py-1 px-4 border border-indigo-400 text-indigo-400 hover:text-indigo-300 hover:border-indigo-300 transition-colors duration-300">
+                                <?php echo __('login_register'); ?>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="flex items-center gap-2 ml-4 pl-4">
-                        <a href="?<?php echo http_build_query(array_merge($_GET, ['lang' => 'es'])); ?>" 
-                           class="<?php echo get_locale() === 'es' ? 'text-white font-bold' : 'text-zinc-500 hover:text-zinc-300'; ?> transition-colors text-xs uppercase tracking-wide">
+                        <a href="?<?php echo http_build_query(array_merge($_GET, ['lang' => 'es'])); ?>"
+                            class="<?php echo get_locale() === 'es' ? 'text-white font-bold' : 'text-zinc-500 hover:text-zinc-300'; ?> transition-colors text-xs uppercase tracking-wide">
                             ES
                         </a>
                         <span class="text-zinc-700">|</span>
-                        <a href="?<?php echo http_build_query(array_merge($_GET, ['lang' => 'en'])); ?>" 
-                           class="<?php echo get_locale() === 'en' ? 'text-white font-bold' : 'text-zinc-500 hover:text-zinc-300'; ?> transition-colors text-xs uppercase tracking-wide">
+                        <a href="?<?php echo http_build_query(array_merge($_GET, ['lang' => 'en'])); ?>"
+                            class="<?php echo get_locale() === 'en' ? 'text-white font-bold' : 'text-zinc-500 hover:text-zinc-300'; ?> transition-colors text-xs uppercase tracking-wide">
                             EN
                         </a>
                     </li>
