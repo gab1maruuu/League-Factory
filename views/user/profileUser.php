@@ -51,7 +51,7 @@
 
             <div class="ml-1">
                 <h1 class="text-3xl font-bold tracking-tight mb-1"> Bienvenido
-                    <span class="text-white"><?php echo $_SESSION['user_name'] . " " . $_SESSION['user_surname']; ?>
+                    <span class="text-white"><?php echo htmlspecialchars($_SESSION['user_username']) ?>
                 </h1>
                 <p class="text-sm text-gray-400 font-medium">
                     <?php echo $_SESSION['user_email'] ?>
