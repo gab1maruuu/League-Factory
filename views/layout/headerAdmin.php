@@ -22,19 +22,26 @@
             <nav class="flex items-center gap-8">
                 <ul class="flex flex-row gap-6 text-sm font-medium items-center">
                     <li><a href="index.php?action=home"
-                            class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('home'); ?></a></li>
+                            class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('home'); ?></a>
+                    </li>
                     <li><a href="#usuarios"
-                            class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('user_admin'); ?></a></li>
+                            class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('user_admin'); ?></a>
+                    </li>
                     <li><a href="#equipos"
                             class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('modify_teams'); ?></a>
                     </li>
-                    <li><a href="#ligas" class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('modify_leagues'); ?></a></li>
-
-
+                    <li><a href="#ligas"
+                            class="text-zinc-400 hover:text-white transition-colors duration-200"><?php echo __('modify_leagues'); ?></a>
+                    </li>
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <li class="flex items-center gap-6 ml-4 border-l border-zinc-700 pl-6">
+                            <div
+                                class="cursor-pointer relative group block w-12 h-12 overflow-hidden rounded-full border-4 border-zinc-800 shadow-2xl">
+                                <img src="<?php echo (!empty($_SESSION['user_photo'])) ? $_SESSION['user_photo'] : '/public/images/perfil.jpg'; ?>"
+                                    class="h-full w-full object-cover opacity-90" alt="Foto de perfil">
+                            </div>
                             <a href="index.php?action=profile" class="text-indigo-400 font-bold">
-                                <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+                                <?php echo htmlspecialchars($_SESSION['user_username'] ?? $_SESSION['user_name']); ?>
                             </a>
                             <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
                                 <a href="adminPanel.php?action=admin"
@@ -55,7 +62,6 @@
                             </a>
                         </li>
                     <?php endif; ?>
-
                     <li class="flex items-center gap-2 ml-4 pl-4">
                         <a href="?<?php echo http_build_query(array_merge($_GET, ['lang' => 'es'])); ?>"
                             class="<?php echo get_locale() === 'es' ? 'text-white font-bold' : 'text-zinc-500 hover:text-zinc-300'; ?> transition-colors text-xs uppercase tracking-wide">
