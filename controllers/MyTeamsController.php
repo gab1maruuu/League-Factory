@@ -3,19 +3,22 @@ require_once 'models/Team.php';
 require_once 'models/User.php';
 require_once 'config/Database.php';
 
-class MyTeamsController {
+class MyTeamsController
+{
     private $team;
     private $user;
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $database = new Database();
         $this->db = $database->getPdo();
         $this->team = new Team($this->db);
         $this->user = new User($this->db);
     }
 
-    public function index() {
+    public function index()
+    {
         if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');
             exit;
@@ -24,7 +27,7 @@ class MyTeamsController {
         $userId = $_SESSION['user_id'];
         // Find teams where user is captain
         $myTeams = $this->team->findByCaptain($userId);
-        
+
         // Optionally find teams where user is a member (need a method for that in Team model or separate query)
         // For now, focusing on teams owned by user as per "Tus equipos" usually implies ownership or membership.
         // User asked: "donde el usuario pueda ver sus equipos... añadir miembros (solo el capitan)..."
@@ -32,7 +35,8 @@ class MyTeamsController {
         include 'views/user/myTeams.php';
     }
 
-    public function manage() {
+    public function manage()
+    {
         if (!isset($_SESSION['user_id'])) {
             header('Location: index.php?action=login');
             exit;
@@ -45,7 +49,7 @@ class MyTeamsController {
         }
 
         $teamData = $this->team->findById($teamId);
-        
+
         // Verify ownership
         if ($teamData['capitan_id'] != $_SESSION['user_id']) {
             $_SESSION['error'] = 'No tienes permiso para gestionar este equipo.';
@@ -58,25 +62,23 @@ class MyTeamsController {
         // Since it's not in the previous file view, I might need to add it or write raw query here.
         // Better to add to Model. Checking Team.php content is needed.
         // For now I'll assume I can add it or doing it raw here if model is limited.
-        
-        $stmt = $this->db->prepare("SELECT u.id, u.username, u.nombre, u.apellido, u.foto_perfil FROM usuarios u JOIN jugadores j ON u.id = j.usuario_asociado_id WHERE j.equipo_id = :team_id");
-        // Wait, 'jugadores' table links to 'equipos'. But 'jugadores' has 'usuario_asociado_id'.
-        // Let's assume this structure from database.sql
-        
+
+        $stmt = $this->db->prepare("SELECT id, username, nombre, apellido, foto_perfil FROM usuarios WHERE equipo_id = :team_id");
         $stmt->execute(['team_id' => $teamId]);
         $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         include 'views/user/manageTeam.php';
     }
 
-    public function updatePhoto() {
+    public function updatePhoto()
+    {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-             header('Location: index.php?action=my_teams');
-             exit;
+            header('Location: index.php?action=my_teams');
+            exit;
         }
 
         $teamId = $_POST['id'] ?? '';
-        
+
         $teamData = $this->team->findById($teamId);
         if ($teamData['capitan_id'] != $_SESSION['user_id']) {
             $_SESSION['error'] = 'No tienes permiso.';
@@ -109,63 +111,68 @@ class MyTeamsController {
                 $_SESSION['error'] = 'Solo PNG.';
             }
         }
-        
+
         header('Location: index.php?action=manage_team&id=' . $teamId);
         exit;
     }
 
-    public function addMember() {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') exit;
-        
+    public function addMember()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+            exit;
+
         $teamId = $_POST['team_id'];
         $userId = $_POST['user_id'];
-        
+
         $teamData = $this->team->findById($teamId);
-        if ($teamData['capitan_id'] != $_SESSION['user_id']) exit;
+        if ($teamData['capitan_id'] != $_SESSION['user_id'])
+            exit;
 
         // Check if user exists
         $userToAdd = $this->user->findById($userId);
-        if (!$userToAdd) exit;
+        if (!$userToAdd)
+            exit;
 
-        // Add to team (jugadores table)
-        // Assuming 'jugadores' table has structure: id, equipo_id, nombre, usuario_asociado_id
-        // We'll use the user's name for the 'nombre' field in players table
-        $stmt = $this->db->prepare("INSERT INTO jugadores (equipo_id, nombre, usuario_asociado_id) VALUES (:team_id, :nombre, :user_id)");
+        // Update user's team
+        $stmt = $this->db->prepare("UPDATE usuarios SET equipo_id = :team_id WHERE id = :user_id");
         $stmt->execute([
             'team_id' => $teamId,
-            'nombre' => $userToAdd['nombre'] . ' ' . $userToAdd['apellido'],
             'user_id' => $userId
         ]);
-        
+
         $_SESSION['success'] = 'Miembro añadido.';
         header('Location: index.php?action=manage_team&id=' . $teamId);
         exit;
     }
 
-    public function removeMember() {
-         if ($_SERVER['REQUEST_METHOD'] !== 'POST') exit;
-        
+    public function removeMember()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+            exit;
+
         $teamId = $_POST['team_id'];
         $memberId = $_POST['user_id']; // This receives the user_id (usuario_asociado_id) according to view logic, wait.
         // View sent user_id which is $member['id'].
         // But we need to delete from 'jugadores'.
         // Let's delete based on usuario_asociado_id and equipo_id
-        
-        $teamData = $this->team->findById($teamId);
-        if ($teamData['capitan_id'] != $_SESSION['user_id']) exit;
 
-        $stmt = $this->db->prepare("DELETE FROM jugadores WHERE equipo_id = :team_id AND usuario_asociado_id = :user_id");
+        $teamData = $this->team->findById($teamId);
+        if ($teamData['capitan_id'] != $_SESSION['user_id'])
+            exit;
+
+        $stmt = $this->db->prepare("UPDATE usuarios SET equipo_id = NULL WHERE id = :user_id AND equipo_id = :team_id");
         $stmt->execute(['team_id' => $teamId, 'user_id' => $memberId]);
-        
+
         $_SESSION['success'] = 'Miembro eliminado.';
         header('Location: index.php?action=manage_team&id=' . $teamId);
         exit;
     }
 
-    public function searchUser() {
+    public function searchUser()
+    {
         // AJAX endpoint
         header('Content-Type: application/json');
-        
+
         if (!isset($_SESSION['user_id'])) {
             echo json_encode(['error' => 'Unauthorized']);
             exit;
@@ -177,10 +184,10 @@ class MyTeamsController {
             exit;
         }
 
-        $stmt = $this->db->prepare("SELECT id, username, nombre, apellido FROM usuarios WHERE username LIKE :q OR email LIKE :q LIMIT 10");
+        $stmt = $this->db->prepare("SELECT id, username, nombre, apellido FROM usuarios WHERE username LIKE :q OR email LIKE :q OR nombre LIKE :q OR apellido LIKE :q LIMIT 10");
         $stmt->execute(['q' => "%$query%"]);
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         echo json_encode($users);
     }
 }

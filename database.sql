@@ -11,6 +11,7 @@ CREATE TABLE usuarios (
     email VARCHAR(100) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL, -- Recuerda usar password_hash() en PHP
     rol ENUM('admin', 'organizador', 'usuario') DEFAULT 'usuario',
+    equipo_id INT DEFAULT NULL, -- Nuevo: Relación directa con equipos
     foto_perfil VARCHAR(255),
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
@@ -88,26 +89,16 @@ CREATE TABLE partidos (
     FOREIGN KEY (equipo_visitante_id) REFERENCES equipos(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- 8. Tabla de JUGADORES (Detalle de la plantilla de un equipo)
--- "Todo lo que veas conveniente": Es útil tener la lista de jugadores aparte del usuario login
-CREATE TABLE jugadores (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    equipo_id INT NOT NULL,
-    nombre VARCHAR(100) NOT NULL,
-    dorsal INT,
-    posicion VARCHAR(50), -- Portero, Delantero, etc.
-    usuario_asociado_id INT NULL, -- Si el jugador también es usuario de la app
-    FOREIGN KEY (equipo_id) REFERENCES equipos(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_asociado_id) REFERENCES usuarios(id) ON DELETE SET NULL
-) ENGINE=InnoDB;
-
--- 9. Tabla de ESTADÍSTICAS / EVENTOS (Goles, Tarjetas, MVP)
+-- 8. Tabla de ESTADÍSTICAS / EVENTOS (Goles, Tarjetas, MVP)
 CREATE TABLE eventos_partido (
     id INT AUTO_INCREMENT PRIMARY KEY,
     partido_id INT NOT NULL,
-    jugador_id INT, -- Quién metió el gol o recibió tarjeta
+    jugador_id INT, -- Referencia a usuarios (antes jugadores)
     tipo_evento ENUM('gol', 'tarjeta_amarilla', 'tarjeta_roja', 'asistencia') NOT NULL,
     minuto INT,
     FOREIGN KEY (partido_id) REFERENCES partidos(id) ON DELETE CASCADE,
-    FOREIGN KEY (jugador_id) REFERENCES jugadores(id) ON DELETE CASCADE
+    FOREIGN KEY (jugador_id) REFERENCES usuarios(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
+
+-- Anexar FK de usuarios a equipos (ya que equipos se crea despues de usuarios)
+ALTER TABLE usuarios ADD CONSTRAINT fk_usuario_equipo FOREIGN KEY (equipo_id) REFERENCES equipos(id) ON DELETE SET NULL;
