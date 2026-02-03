@@ -3,7 +3,7 @@ return [
     'home' => 'Home',
     'create_team' => 'Create Team',
     'join_league' => 'Join League',
-    'ranking' => 'Standings',
+    'ranking' => 'Classification',
     'admin_panel' => 'Admin Panel',
     'logout' => 'Logout',
     'login_register' => 'Register or Login',
@@ -61,5 +61,6 @@ return [
 
     'mvc_arch' => 'MVC Architecture',
     'all_rights' => 'All rights reserved.',
+    'your_teams' => 'Your Teams',
 ];
 ?>

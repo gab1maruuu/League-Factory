@@ -61,5 +61,6 @@ return [
 
     'mvc_arch' => 'Arquitectura MVC',
     'all_rights' => 'Todos los derechos reservados.',
+    'your_teams' => 'Tus Equipos',
 ];
 ?>
