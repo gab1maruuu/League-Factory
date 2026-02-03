@@ -25,12 +25,27 @@ class MyTeamsController
         }
 
         $userId = $_SESSION['user_id'];
-        // Find teams where user is captain
-        $myTeams = $this->team->findByCaptain($userId);
+        
+        // 1. Teams where user is captain
+        $captainTeams = $this->team->findByCaptain($userId);
 
-        // Optionally find teams where user is a member (need a method for that in Team model or separate query)
-        // For now, focusing on teams owned by user as per "Tus equipos" usually implies ownership or membership.
-        // User asked: "donde el usuario pueda ver sus equipos... añadir miembros (solo el capitan)..."
+        // 2. Team where user is a member (via equipo_id in users table)
+        $memberTeams = [];
+        $currentUser = $this->user->findById($userId);
+        if ($currentUser && !empty($currentUser['equipo_id'])) {
+            $team = $this->team->findById($currentUser['equipo_id']);
+            if ($team) {
+                $memberTeams[] = $team;
+            }
+        }
+
+        // Merge and deduplicate by ID
+        $allTeams = array_merge($captainTeams, $memberTeams);
+        $myTeams = [];
+        foreach ($allTeams as $t) {
+            $myTeams[$t['id']] = $t;
+        }
+        $myTeams = array_values($myTeams);
 
         include 'views/user/myTeams.php';
     }
@@ -52,7 +67,7 @@ class MyTeamsController
 
         // Verify ownership
         if ($teamData['capitan_id'] != $_SESSION['user_id']) {
-            $_SESSION['error'] = 'No tienes permiso para gestionar este equipo.';
+            $_SESSION['error'] = __('permission_denied');
             header('Location: index.php?action=my_teams');
             exit;
         }
@@ -66,6 +81,8 @@ class MyTeamsController
         $stmt = $this->db->prepare("SELECT id, username, nombre, apellido, foto_perfil FROM usuarios WHERE equipo_id = :team_id");
         $stmt->execute(['team_id' => $teamId]);
         $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $captain = $this->user->findById($teamData['capitan_id']);
 
         include 'views/user/manageTeam.php';
     }
@@ -81,7 +98,7 @@ class MyTeamsController
 
         $teamData = $this->team->findById($teamId);
         if ($teamData['capitan_id'] != $_SESSION['user_id']) {
-            $_SESSION['error'] = 'No tienes permiso.';
+            $_SESSION['error'] = __('permission_denied');
             header('Location: index.php?action=my_teams');
             exit;
         }
@@ -103,12 +120,12 @@ class MyTeamsController
 
                 if (move_uploaded_file($fileTmpPath, $dest_path)) {
                     $this->team->update($teamId, ['escudo_url' => $dest_path]);
-                    $_SESSION['success'] = 'Foto actualizada.';
+                    $_SESSION['success'] = __('photo_updated');
                 } else {
-                    $_SESSION['error'] = 'Error al subir la imagen.';
+                    $_SESSION['error'] = __('error_upload');
                 }
             } else {
-                $_SESSION['error'] = 'Solo PNG.';
+                $_SESSION['error'] = __('error_png');
             }
         }
 
@@ -122,25 +139,35 @@ class MyTeamsController
             exit;
 
         $teamId = $_POST['team_id'];
-        $userId = $_POST['user_id'];
+        $userId = $_POST['user_id'] ?? null;
+        $username = $_POST['username'] ?? null;
 
         $teamData = $this->team->findById($teamId);
         if ($teamData['capitan_id'] != $_SESSION['user_id'])
             exit;
 
-        // Check if user exists
-        $userToAdd = $this->user->findById($userId);
-        if (!$userToAdd)
+        // Determine user to add
+        $userToAdd = null;
+        if ($userId) {
+            $userToAdd = $this->user->findById($userId);
+        } elseif ($username) {
+            $userToAdd = $this->user->findByUsername($username);
+        }
+
+        if (!$userToAdd) {
+            $_SESSION['error'] = __('user_not_found');
+            header('Location: index.php?action=manage_team&id=' . $teamId);
             exit;
+        }
 
         // Update user's team
         $stmt = $this->db->prepare("UPDATE usuarios SET equipo_id = :team_id WHERE id = :user_id");
         $stmt->execute([
             'team_id' => $teamId,
-            'user_id' => $userId
+            'user_id' => $userToAdd['id']
         ]);
 
-        $_SESSION['success'] = 'Miembro añadido.';
+        $_SESSION['success'] = __('member_added');
         header('Location: index.php?action=manage_team&id=' . $teamId);
         exit;
     }
@@ -163,7 +190,7 @@ class MyTeamsController
         $stmt = $this->db->prepare("UPDATE usuarios SET equipo_id = NULL WHERE id = :user_id AND equipo_id = :team_id");
         $stmt->execute(['team_id' => $teamId, 'user_id' => $memberId]);
 
-        $_SESSION['success'] = 'Miembro eliminado.';
+        $_SESSION['success'] = __('member_removed');
         header('Location: index.php?action=manage_team&id=' . $teamId);
         exit;
     }
