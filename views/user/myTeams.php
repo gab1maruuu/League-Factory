@@ -11,6 +11,25 @@
     <main class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold mb-8 text-indigo-400"><?php echo __('your_teams'); ?></h1>
 
+        <h1 class="text-3xl font-bold mb-8 text-indigo-400"><?php echo __('your_teams'); ?></h1>
+
+        <!-- Flash Messages -->
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
+                <span class="text-xl">⚠️</span>
+                <span class="font-medium"><?php echo $_SESSION['error']; ?></span>
+            </div>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="bg-green-500/10 border border-green-500/20 text-green-400 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
+                <span class="text-xl">✅</span>
+                <span class="font-medium"><?php echo $_SESSION['success']; ?></span>
+            </div>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+
         <?php if (empty($myTeams)): ?>
             <div class="bg-zinc-900 rounded-xl p-8 text-center border border-zinc-800">
                 <p class="text-zinc-500 mb-4"><?php echo __('no_teams_yet'); ?></p>

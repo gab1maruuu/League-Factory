@@ -57,7 +57,29 @@
                 <?php echo __('hero_description'); ?>
             </p>
         </div>
+        </div>
     </section>
+
+    <!-- Flash Messages (Consumed here so they don't persist) -->
+    <?php if (isset($_SESSION['error']) || isset($_SESSION['success'])): ?>
+        <section class="max-w-4xl mx-auto px-4 mt-6">
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3 rounded-xl flex items-center gap-2">
+                    <span>⚠️</span>
+                    <span><?php echo $_SESSION['error']; ?></span>
+                </div>
+                <?php unset($_SESSION['error']); ?>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="bg-green-500/10 border border-green-500/20 text-green-400 px-4 py-3 rounded-xl flex items-center gap-2">
+                    <span>✅</span>
+                    <span><?php echo $_SESSION['success']; ?></span>
+                </div>
+                <?php unset($_SESSION['success']); ?>
+            <?php endif; ?>
+        </section>
+    <?php endif; ?>
 
     <section class="py-16 border-b border-zinc-800 bg-zinc-900/30">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">

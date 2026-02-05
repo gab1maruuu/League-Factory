@@ -28,6 +28,23 @@
                 class="bg-zinc-900/80 backdrop-blur-md border border-zinc-700/50 rounded-2xl shadow-2xl p-8 hover:border-indigo-500/30 transition-all duration-300 text-left">
                 <h2 class="text-2xl font-bold text-white mb-6 text-center"><?php echo __('login'); ?></h2>
 
+                <!-- Flash Messages -->
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3 rounded-xl mb-6 text-sm flex items-center gap-2">
+                        <span>⚠️</span>
+                        <span><?php echo $_SESSION['error']; ?></span>
+                    </div>
+                    <?php unset($_SESSION['error']); ?>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION['success'])): ?>
+                    <div class="bg-green-500/10 border border-green-500/20 text-green-400 px-4 py-3 rounded-xl mb-6 text-sm flex items-center gap-2">
+                        <span>✅</span>
+                        <span><?php echo $_SESSION['success']; ?></span>
+                    </div>
+                    <?php unset($_SESSION['success']); ?>
+                <?php endif; ?>
+
                 <form action="index.php?action=login" method="POST" class="space-y-6">
                     <div>
                         <label for="identity"

@@ -16,6 +16,23 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Flash Messages -->
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="col-span-full bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl flex items-center gap-3 backdrop-blur-sm">
+                        <span class="text-xl">⚠️</span>
+                        <span class="font-medium"><?php echo $_SESSION['error']; ?></span>
+                    </div>
+                    <?php unset($_SESSION['error']); ?>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION['success'])): ?>
+                    <div class="col-span-full bg-green-500/10 border border-green-500/20 text-green-400 px-4 py-3 rounded-xl flex items-center gap-3 backdrop-blur-sm">
+                        <span class="text-xl">✅</span>
+                        <span class="font-medium"><?php echo $_SESSION['success']; ?></span>
+                    </div>
+                    <?php unset($_SESSION['success']); ?>
+                <?php endif; ?>
+
                 <?php if (empty($leagues)): ?>
                     <p class="text-center text-zinc-500 col-span-full"><?php echo __('no_leagues'); ?></p>
                 <?php else: ?>
