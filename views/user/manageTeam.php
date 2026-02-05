@@ -13,6 +13,23 @@
     <main class="container mx-auto px-4 py-8">
         <a href="index.php?action=my_teams" class="text-zinc-400 hover:text-white mb-4 inline-block"><?php echo __('back_to_my_teams'); ?></a>
 
+        <!-- Flash Messages -->
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
+                <span class="text-xl">⚠️</span>
+                <span class="font-medium"><?php echo $_SESSION['error']; ?></span>
+            </div>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="bg-green-500/10 border border-green-500/20 text-green-400 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
+                <span class="text-xl">✅</span>
+                <span class="font-medium"><?php echo $_SESSION['success']; ?></span>
+            </div>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+
         <div class="bg-zinc-900 rounded-xl p-8 border border-zinc-800 shadow-xl">
             <div class="flex flex-col md:flex-row items-start gap-8">
                 <!-- Team Info & Photo -->

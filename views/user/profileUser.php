@@ -47,6 +47,20 @@
             <?php unset($_SESSION['error_msg']); ?>
         <?php endif; ?>
 
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="mb-6 p-4 bg-red-900/20 border border-red-800 rounded-lg text-red-400 text-sm">
+                <?php echo $_SESSION['error']; ?>
+            </div>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="mb-6 p-4 bg-green-900/20 border border-green-800 rounded-lg text-green-400 text-sm">
+                <?php echo $_SESSION['success']; ?>
+            </div>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+
         <section class="flex items-center mb-10">
             <form action="/controllers/update_perfil.php" method="POST" enctype="multipart/form-data" id="form-avatar">
                 <label for="input-file" class="cursor-pointer relative group block w-40 h-40 overflow-hidden rounded-full border-4 border-zinc-800 shadow-2xl">
