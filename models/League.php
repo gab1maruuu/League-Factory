@@ -64,5 +64,62 @@ class League
         $stmt = $this->db->prepare("DELETE FROM ligas WHERE id = :id");
         return $stmt->execute(['id' => $id]);
     }
+
+    public function getParticipants($leagueId)
+    {
+        $sql = "SELECT e.id, e.nombre, e.escudo_url 
+                FROM inscripciones_liga il
+                JOIN equipos e ON il.equipo_id = e.id
+                WHERE il.liga_id = :leagueId";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['leagueId' => $leagueId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getParticipantCount($leagueId)
+    {
+        $sql = "SELECT COUNT(*) as total FROM inscripciones_liga WHERE liga_id = :leagueId";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['leagueId' => $leagueId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? (int)$result['total'] : 0;
+    }
+
+    public function getUserLeaguesWithStandings($userId)
+    {
+        // 1. Find all leagues where one of the user's managed teams is playing
+        // OR simply where valid teams are participants. 
+        // Logic: "Leagues with scores of each team of the leagues the user is part of"
+        // If I am in a league, I want to see the WHOLE table of that league.
+        
+        // Find distinct league IDs where user has a team (captain or creator)
+        $sqlLeagues = "
+            SELECT DISTINCT l.* 
+            FROM ligas l
+            JOIN inscripciones_liga il ON l.id = il.liga_id
+            JOIN equipos e ON il.equipo_id = e.id
+            WHERE e.capitan_id = :userId OR e.creado_por = :userId
+            ORDER BY l.fecha_creacion DESC
+        ";
+        $stmt = $this->db->prepare($sqlLeagues);
+        $stmt->execute(['userId' => $userId]);
+        $leagues = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // 2. For each league, get the full standings
+        foreach ($leagues as &$league) {
+            $sqlStandings = "
+                SELECT e.nombre, e.escudo_url, il.* 
+                FROM inscripciones_liga il
+                JOIN equipos e ON il.equipo_id = e.id
+                WHERE il.liga_id = :leagueId
+                ORDER BY il.puntos DESC, il.goles_favor DESC
+            ";
+            $stmtStandings = $this->db->prepare($sqlStandings);
+            $stmtStandings->execute(['leagueId' => $league['id']]);
+            $league['standings'] = $stmtStandings->fetchAll(PDO::FETCH_ASSOC);
+        }
+        
+        return $leagues;
+    }
 }
 ?>

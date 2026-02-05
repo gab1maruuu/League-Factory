@@ -52,6 +52,18 @@ switch ($action) {
         (new LeagueController())->joinList();
         break;
 
+    case 'join_league_submit':
+        (new LeagueController())->joinLeagueWithTeam();
+        break;
+
+    case 'get_league_participants':
+        (new LeagueController())->getLeagueParticipants();
+        break;
+
+    case 'my_standings':
+        (new LeagueController())->myStandings();
+        break;
+
     case 'profile':
         (new UserController())->profile();
         break;

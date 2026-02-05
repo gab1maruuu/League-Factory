@@ -62,5 +62,13 @@ class Team
         $stmt->execute(['userId' => $userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function findMyTeams($userId)
+    {
+        // Finds teams where user is captain OR creator
+        $stmt = $this->db->prepare("SELECT * FROM equipos WHERE capitan_id = :userId OR creado_por = :userId");
+        $stmt->execute(['userId' => $userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

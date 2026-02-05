@@ -56,17 +56,6 @@
             <p class="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
                 <?php echo __('hero_description'); ?>
             </p>
-
-            <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#ligas"
-                    class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-indigo hover:scale-105">
-                    <?php echo __('find_team'); ?>
-                </a>
-                <button
-                    class="px-8 py-4 bg-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-white font-bold rounded-xl transition-all">
-                    <?php echo __('create_my_league'); ?>
-                </button>
-            </div>
         </div>
     </section>
 

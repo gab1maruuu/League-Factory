@@ -87,5 +87,42 @@ return [
     'manage' => 'Manage',
     'in_roster' => 'In roster',
     'no_teams_yet' => 'You have no teams yet.',
+
+    // Join Modal & Standings
+    'join_to' => 'Join',
+    'select_team_desc' => 'Select which team you want to participate with in this league. You can only register teams where you are captain or creator.',
+    'registered_teams' => 'Registered Teams',
+    'loading' => 'Loading...',
+    'select_your_team' => 'Select your team',
+    'no_eligible_teams' => 'You have no eligible teams.',
+    'create_one_first' => 'Create one first',
+    'choose_team_placeholder' => '-- Choose a team --',
+    'subscribe_btn' => 'Register',
+    'no_teams_joined_yet' => 'No teams registered yet.',
+    'error_loading_teams' => 'Error loading teams.',
+
+    'my_competitions' => 'My Competitions',
+    'standings' => 'Standings',
+    'no_active_leagues' => 'You are not participating in any active league.',
+    'join_a_league' => 'Join a league',
+    'team_col' => 'Team',
+    'played_col' => 'MP',
+    'won_col' => 'W',
+    'drawn_col' => 'D',
+    'lost_col' => 'L',
+    'goals_for_col' => 'GF',
+    'goals_against_col' => 'GA',
+    'goal_diff_col' => 'GD',
+    'points_col' => 'PTS',
+    'no_standings_data' => 'No teams registered or matches played yet.',
+
+    // Controller Messages
+    'login_required_join' => 'You must log in to join a league.',
+    'invalid_league_team' => 'Invalid league or team.',
+    'league_full_error' => 'The league has reached the maximum of 14 teams.',
+    'permission_denied_team' => 'You do not have permission to register this team.',
+    'team_joined_success' => 'Your team has successfully joined the league!',
+    'team_already_joined' => 'This team is already registered in this league.',
+    'join_error' => 'Error joining: ',
 ];
 ?>

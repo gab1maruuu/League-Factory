@@ -87,5 +87,42 @@ return [
     'manage' => 'Gestionar',
     'in_roster' => 'En la plantilla',
     'no_teams_yet' => 'No tienes ningun equipo.',
+    
+    // Join Modal & Standings
+    'join_to' => 'Unirse a',
+    'select_team_desc' => 'Selecciona con qué equipo quieres participar en esta liga. Solo puedes inscribir equipos donde seas capitán o creador.',
+    'registered_teams' => 'Equipos inscritos',
+    'loading' => 'Cargando...',
+    'select_your_team' => 'Selecciona tu equipo',
+    'no_eligible_teams' => 'No tienes equipos elegibles.',
+    'create_one_first' => 'Crea uno primero',
+    'choose_team_placeholder' => '-- Elige un equipo --',
+    'subscribe_btn' => 'Inscribirse',
+    'no_teams_joined_yet' => 'No hay equipos inscritos aún.',
+    'error_loading_teams' => 'Error al cargar equipos.',
+    
+    'my_competitions' => 'Mis Competiciones',
+    'standings' => 'Clasificación',
+    'no_active_leagues' => 'No participas en ninguna liga activa.',
+    'join_a_league' => 'Unirse a una liga',
+    'team_col' => 'Equipo',
+    'played_col' => 'PJ',
+    'won_col' => 'V',
+    'drawn_col' => 'E',
+    'lost_col' => 'D',
+    'goals_for_col' => 'GF',
+    'goals_against_col' => 'GC',
+    'goal_diff_col' => 'DG',
+    'points_col' => 'PTS',
+    'no_standings_data' => 'Aún no hay equipos inscritos o partidos jugados.',
+
+    // Controller Messages
+    'login_required_join' => 'Debes iniciar sesión para unirte a una liga.',
+    'invalid_league_team' => 'Liga o equipo no válido.',
+    'league_full_error' => 'La liga ya ha alcanzado el máximo de 14 equipos.',
+    'permission_denied_team' => 'No tienes permiso para inscribir este equipo.',
+    'team_joined_success' => '¡Tu equipo se ha inscrito correctamente a la liga!',
+    'team_already_joined' => 'Este equipo ya está inscrito en esta liga.',
+    'join_error' => 'Error al inscribirse: ',
 ];
 ?>
