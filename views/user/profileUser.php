@@ -33,6 +33,20 @@
             <?php unset($_SESSION['upload_success']); ?>
         <?php endif; ?>
 
+        <?php if (isset($_SESSION['success_msg'])): ?>
+            <div class="mb-6 p-4 bg-green-900/20 border border-green-800 rounded-lg text-green-400 text-sm">
+                <?php echo $_SESSION['success_msg']; ?>
+            </div>
+            <?php unset($_SESSION['success_msg']); ?>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['error_msg'])): ?>
+            <div class="mb-6 p-4 bg-red-900/20 border border-red-800 rounded-lg text-red-400 text-sm">
+                <?php echo $_SESSION['error_msg']; ?>
+            </div>
+            <?php unset($_SESSION['error_msg']); ?>
+        <?php endif; ?>
+
         <section class="flex items-center mb-10">
             <form action="/controllers/update_perfil.php" method="POST" enctype="multipart/form-data" id="form-avatar">
                 <label for="input-file" class="cursor-pointer relative group block w-40 h-40 overflow-hidden rounded-full border-4 border-zinc-800 shadow-2xl">
@@ -50,15 +64,12 @@
             </form>
 
             <div class="ml-4">
-                <h1 class="text-3xl font-bold tracking-tight mb-1"> Bienvenido
-                    <span class="text-white"><?php echo htmlspecialchars($_SESSION['user_username']) ?>
-                </h1>
+                <h1 class="text-3xl font-bold tracking-tight mb-1">Bienvenido <span class="text-white"><?php echo htmlspecialchars($_SESSION['user_username']); ?></span></h1>
                 <p class="text-sm text-gray-400 font-medium">
                     <?php echo $_SESSION['user_email'] ?>
                 </p>
             </div>
         </section>
-
 
         <section class="space-y-12 mb-10">
             <h2 class="w-fit flex text-lg font-bold uppercase tracking-wider text-gray-200 mb-8 space-x-8 border-b-2 border-gray-700">
@@ -174,11 +185,9 @@
 
                     if (input.type === "password") {
                         input.type = "text";
-                        // Cambiamos el icono a uno tachado cuando se ve la contraseña
                         icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />';
                     } else {
                         input.type = "password";
-                        // Volvemos al icono del ojo normal
                         icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />';
                     }
                 }
