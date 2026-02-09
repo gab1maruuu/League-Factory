@@ -10,7 +10,7 @@
 
 <body class="bg-zinc-950 text-zinc-200 font-sans overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 
-    <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative border-b border-zinc-800">
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative border-b border-zinc-800 pt-14 pb-24">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-indigo-600/20 blur-[120px] -z-10 rounded-full"></div>
         <div class="absolute inset-0 bg-pitch -z-10"></div>
 
