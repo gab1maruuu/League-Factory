@@ -57,10 +57,8 @@
                 <?php echo __('hero_description'); ?>
             </p>
         </div>
-        </div>
     </section>
 
-    <!-- Flash Messages (Consumed here so they don't persist) -->
     <?php if (isset($_SESSION['error']) || isset($_SESSION['success'])): ?>
         <section class="max-w-4xl mx-auto px-4 mt-6">
             <?php if (isset($_SESSION['error'])): ?>

@@ -24,18 +24,13 @@ class LeagueController
 
     public function joinList()
     {
-        // Check if user is logged in
         if (!isset($_SESSION['user_id'])) {
-             // Optional: redirect to login or just show empty list (but we want them to join, so maybe allow viewing but not joining action acts as trigger)
-             // For now, let's keep it open, but we need variables for the view.
         }
 
         $leagues = $this->league->findAllSorted();
         
-        // Add participants capability to join view (count/limit)
         foreach ($leagues as &$league) {
             $league['participant_count'] = $this->league->getParticipantCount($league['id']);
-            // We can also fetch the exact list if needed for the modal, but count is essential for the card
         }
         unset($league);
 
@@ -76,7 +71,6 @@ class LeagueController
                 exit;
             }
 
-            // Check limit (Max 14)
             $currentCount = $this->league->getParticipantCount($leagueId);
             if ($currentCount >= 14) {
                 $_SESSION['error'] = __('league_full_error');
@@ -84,7 +78,6 @@ class LeagueController
                 exit;
             }
 
-            // Verify team ownership validation
             $team = $this->team->findById($teamId);
             if (!$team || ($team['capitan_id'] != $_SESSION['user_id'] && $team['creado_por'] != $_SESSION['user_id'])) {
                 $_SESSION['error'] = __('permission_denied_team');
@@ -92,16 +85,12 @@ class LeagueController
                 exit;
             }
 
-            // Check if already registered (should be DB constraint or check here)
-            // Assuming DB has UNIQUE(liga_id, equipo_id) as seen in schema
-            
             try {
-                // Insert into inscripciones_liga
                 $stmt = $this->db->prepare("INSERT INTO inscripciones_liga (liga_id, equipo_id) VALUES (:liga_id, :equipo_id)");
                 $stmt->execute(['liga_id' => $leagueId, 'equipo_id' => $teamId]);
                 $_SESSION['success'] = __('team_joined_success');
             } catch (PDOException $e) {
-                if ($e->getCode() == 23000) { // Duplicate entry
+                if ($e->getCode() == 23000) {
                      $_SESSION['error'] = __('team_already_joined');
                 } else {
                      $_SESSION['error'] = __('join_error') . $e->getMessage();
@@ -115,8 +104,7 @@ class LeagueController
 
     public function getLeagueParticipants()
     {
-        // AJAX endpoint
-        ob_clean(); // Clear any previous output (header.php, etc)
+        ob_clean();
         header('Content-Type: application/json');
         
         $leagueId = $_GET['id'] ?? null;

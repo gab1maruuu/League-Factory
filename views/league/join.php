@@ -16,7 +16,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Flash Messages -->
                 <?php if (isset($_SESSION['error'])): ?>
                     <div class="col-span-full bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl flex items-center gap-3 backdrop-blur-sm">
                         <span class="text-xl">⚠️</span>
@@ -38,20 +37,6 @@
                 <?php else: ?>
                     <?php foreach ($leagues as $league): ?>
                         <?php
-                        // Logic for status visuals
-                        // 'abierta' (Future), 'en_curso' (Current Week - Joinable based on user logic of "7 days duration"), 'finalizada' (Past)
-                        
-                        // User Request: 
-                        // "aparezcan cada domingo, duren 7 dias par que los equipos puedan unirse (Open), y luego cierren plazas (Closed)"
-                        // My DB Logic created:
-                        // > NOW: 'abierta' (Future)
-                        // <= NOW & > -7 days: 'en_curso' (Current) -> This is the "7 days window".
-                        // < -7 days: 'finalizada' (Past)
-                        
-                        // So: 'en_curso' is the MAIN joinable status.
-                        // 'abierta' (Future) -> Let's say "Coming Soon" or just Open.
-                        // 'finalizada' -> Closed.
-                        
                         $isJoinable = ($league['estado'] === 'en_curso' || $league['estado'] === 'abierta');
                         $cardOpacity = $isJoinable ? 'opacity-100' : 'opacity-50 grayscale';
                         $borderColor = $isJoinable ? 'border-zinc-800 hover:border-indigo-500/50' : 'border-zinc-800/50';
@@ -69,7 +54,6 @@
                                     <h3 class="text-xl font-bold text-white mt-1"><?php echo htmlspecialchars($league['nombre']); ?></h3>
                                 </div>
                                 <div class="bg-zinc-800 p-2 rounded-lg">
-                                    <!-- Icon placeholder based on sport -->
                                     <span class="text-xl">⚽</span>
                                 </div>
                             </div>
@@ -105,9 +89,7 @@
             </div>
     </section>
 
-    <!-- Join League Modal -->
     <div id="joinModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Backdrop -->
         <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeJoinModal()"></div>
 
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -128,12 +110,9 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Participants Info -->
                         <div class="mb-6 bg-zinc-800/50 p-4 rounded-lg border border-zinc-800">
                             <h4 class="text-sm font-bold text-white mb-2"><?php echo __('registered_teams'); ?> (<span id="participantCount">0</span>/14)</h4>
                             <div id="participantsList" class="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
-                                <!-- Populated by JS -->
                                 <span class="text-xs text-zinc-500"><?php echo __('loading'); ?></span>
                             </div>
                         </div>
@@ -176,7 +155,6 @@
             document.getElementById('modalLeagueName').textContent = leagueName;
             document.getElementById('joinModal').classList.remove('hidden');
 
-            // Fetch participants
             const listContainer = document.getElementById('participantsList');
             const countSpan = document.getElementById('participantCount');
             listContainer.innerHTML = '<span class="text-xs text-zinc-500"><?php echo __('loading'); ?></span>';
@@ -193,9 +171,6 @@
                             const badge = document.createElement('div');
                             badge.className = 'flex items-center gap-2 px-3 py-1.5 rounded-md bg-zinc-800 border border-zinc-700';
                             
-                            // Optional: Image if available
-                            // if (team.escudo_url) ...
-
                             const name = document.createElement('span');
                             name.className = 'text-xs text-zinc-300 font-medium';
                             name.textContent = team.nombre;

@@ -21,10 +21,10 @@ CREATE TABLE ligas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT,
-    deporte VARCHAR(50) NOT NULL, -- Ej: Fútbol, Baloncesto
-    temporada VARCHAR(20), -- Ej: 2024/2025
+    deporte VARCHAR(50) NOT NULL,
+    temporada VARCHAR(20),
     estado ENUM('abierta', 'en_curso', 'finalizada') DEFAULT 'abierta',
-    creado_por INT NOT NULL, -- El usuario organizador
+    creado_por INT NOT NULL,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     fecha_limite_inscripcion DATETIME DEFAULT NULL,
     FOREIGN KEY (creado_por) REFERENCES usuarios(id) ON DELETE CASCADE
@@ -34,10 +34,10 @@ CREATE TABLE ligas (
 CREATE TABLE equipos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    escudo_url VARCHAR(255), -- URL a la imagen del logo
-    capitan_id INT, -- Usuario que gestiona el equipo
+    escudo_url VARCHAR(255),
+    capitan_id INT,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    creado_por INT NOT NULL, -- El usuario organizador
+    creado_por INT NOT NULL,
     FOREIGN KEY (creado_por) REFERENCES usuarios(id) ON DELETE CASCADE,
     FOREIGN KEY (capitan_id) REFERENCES usuarios(id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
@@ -65,7 +65,7 @@ CREATE TABLE inscripciones_liga (
 CREATE TABLE jornadas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     liga_id INT NOT NULL,
-    numero_jornada INT NOT NULL, -- Ej: Jornada 1, Jornada 2
+    numero_jornada INT NOT NULL,
     fecha_inicio DATE,
     fecha_fin DATE,
     FOREIGN KEY (liga_id) REFERENCES ligas(id) ON DELETE CASCADE
@@ -75,12 +75,12 @@ CREATE TABLE jornadas (
 CREATE TABLE partidos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     liga_id INT NOT NULL,
-    jornada_id INT, -- Opcional, si usas la tabla jornadas
+    jornada_id INT,
     equipo_local_id INT NOT NULL,
     equipo_visitante_id INT NOT NULL,
-    fecha_hora DATETIME, -- Aquí guardas el HORARIO
-    ubicacion VARCHAR(150), -- Estadio o pista
-    goles_local INT DEFAULT NULL, -- NULL significa que no se ha jugado
+    fecha_hora DATETIME,
+    ubicacion VARCHAR(150),
+    goles_local INT DEFAULT NULL,
     goles_visitante INT DEFAULT NULL,
     estado ENUM('programado', 'finalizado', 'suspendido') DEFAULT 'programado',
     FOREIGN KEY (liga_id) REFERENCES ligas(id) ON DELETE CASCADE,
@@ -93,7 +93,7 @@ CREATE TABLE partidos (
 CREATE TABLE eventos_partido (
     id INT AUTO_INCREMENT PRIMARY KEY,
     partido_id INT NOT NULL,
-    jugador_id INT, -- Referencia a usuarios (antes jugadores)
+    jugador_id INT,
     tipo_evento ENUM('gol', 'tarjeta_amarilla', 'tarjeta_roja', 'asistencia') NOT NULL,
     minuto INT,
     FOREIGN KEY (partido_id) REFERENCES partidos(id) ON DELETE CASCADE,

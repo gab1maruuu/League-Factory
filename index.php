@@ -17,13 +17,9 @@ if ($action === 'logout') {
     exit;
 }
 
-// Global Authentication Check
-// Whitelisted actions that don't require login
 $publicActions = ['home', 'login', 'register'];
 
 if (!isset($_SESSION['user_id']) && !in_array($action, $publicActions)) {
-    // If it's an AJAX request (like get_league_participants), maybe return 401?
-    // But for now, user requested redirection.
     header("Location: index.php?action=login");
     exit;
 }

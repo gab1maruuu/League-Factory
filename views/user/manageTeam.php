@@ -13,7 +13,6 @@
     <main class="container mx-auto px-4 py-8">
         <a href="index.php?action=my_teams" class="text-zinc-400 hover:text-white mb-4 inline-block"><?php echo __('back_to_my_teams'); ?></a>
 
-        <!-- Flash Messages -->
         <?php if (isset($_SESSION['error'])): ?>
             <div class="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
                 <span class="text-xl">⚠️</span>
@@ -32,7 +31,6 @@
 
         <div class="bg-zinc-900 rounded-xl p-8 border border-zinc-800 shadow-xl">
             <div class="flex flex-col md:flex-row items-start gap-8">
-                <!-- Team Info & Photo -->
                 <div class="w-full md:w-1/3 text-center">
                     <?php if ($teamData['escudo_url']): ?>
                         <img src="<?php echo htmlspecialchars($teamData['escudo_url']); ?>" alt="Escudo"
@@ -57,7 +55,6 @@
                     </form>
                 </div>
 
-                <!-- Members Management -->
                 <div class="w-full md:w-2/3">
                     <h2 class="text-2xl font-bold mb-6 text-indigo-400 border-b border-zinc-800 pb-2"><?php echo __('team_members'); ?></h2>
 
@@ -76,9 +73,7 @@
                         </div>
                     </div>
 
-                    <!-- Members List -->
                     <div class="space-y-4">
-                        <!-- Captain (Always Show) -->
                         <div class="flex items-center justify-between p-4 bg-zinc-950/30 rounded-lg border border-zinc-800 border-dashed">
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold">
@@ -95,7 +90,6 @@
                         </div>
 
                         <?php 
-                        // Filter out captain from members list to avoid duplication if they are in the query
                         $otherMembers = array_filter($members, function($m) use ($captain) {
                             return $m['id'] != $captain['id'];
                         });
@@ -219,7 +213,6 @@
             }
         });
 
-        // Hide results when clicking outside
         document.addEventListener('click', function (e) {
             if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
                 resultsContainer.classList.add('hidden');

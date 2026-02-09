@@ -11,9 +11,6 @@
     <main class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold mb-8 text-indigo-400"><?php echo __('your_teams'); ?></h1>
 
-        <h1 class="text-3xl font-bold mb-8 text-indigo-400"><?php echo __('your_teams'); ?></h1>
-
-        <!-- Flash Messages -->
         <?php if (isset($_SESSION['error'])): ?>
             <div class="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
                 <span class="text-xl">⚠️</span>

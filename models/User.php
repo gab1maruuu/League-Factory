@@ -43,7 +43,6 @@ class User
 
   public function insert($data)
   {
-    // Los datos vienen con claves: nombre, apellido, username, email, password_hash, rol
     $stmt = $this->db->prepare("INSERT INTO usuarios (nombre, apellido, username, email, password_hash, rol) VALUES (:nombre, :apellido, :username, :email, :password_hash, :rol)");
     return $stmt->execute($data);
   }

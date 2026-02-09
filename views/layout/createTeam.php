@@ -62,8 +62,6 @@
                         class="w-full px-4 py-3 bg-zinc-950/50 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-medium file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500">
                 </div>
 
-                <!-- Captain ID removed -->
-
                 <div class="pt-4 flex flex-col sm:flex-row gap-4">
                     <button type="submit" 
                         class="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-900/20 hover:scale-[1.02] active:scale-[0.98]">

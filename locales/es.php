@@ -48,7 +48,6 @@ return [
     'captain_id_placeholder' => 'ID de usuario (opcional)',
     'captain_hint' => 'Puedes asignar un capitán más tarde si lo prefieres.',
     'cancel' => 'Cancelar',
-
     'active_competition' => 'Competición Activa',
     'search_league' => 'Busca tu Liga',
     'join_league_desc' => 'Únete a las ligas abiertas para esta semana. Las inscripciones cierran cada domingo.',
@@ -58,7 +57,6 @@ return [
     'status_open' => 'Abierta',
     'join_btn' => 'Unirse',
     'back_home' => '← Volver al inicio',
-
     'mvc_arch' => 'Arquitectura MVC',
     'all_rights' => 'Todos los derechos reservados.',
     'your_teams' => 'Tus Equipos',
@@ -87,8 +85,6 @@ return [
     'manage' => 'Gestionar',
     'in_roster' => 'En la plantilla',
     'no_teams_yet' => 'No tienes ningun equipo.',
-    
-    // Join Modal & Standings
     'join_to' => 'Unirse a',
     'select_team_desc' => 'Selecciona con qué equipo quieres participar en esta liga. Solo puedes inscribir equipos donde seas capitán o creador.',
     'registered_teams' => 'Equipos inscritos',
@@ -100,7 +96,6 @@ return [
     'subscribe_btn' => 'Inscribirse',
     'no_teams_joined_yet' => 'No hay equipos inscritos aún.',
     'error_loading_teams' => 'Error al cargar equipos.',
-    
     'my_competitions' => 'Mis Competiciones',
     'standings' => 'Clasificación',
     'no_active_leagues' => 'No participas en ninguna liga activa.',
@@ -115,8 +110,6 @@ return [
     'goal_diff_col' => 'DG',
     'points_col' => 'PTS',
     'no_standings_data' => 'Aún no hay equipos inscritos o partidos jugados.',
-
-    // Controller Messages
     'login_required_join' => 'Debes iniciar sesión para unirte a una liga.',
     'invalid_league_team' => 'Liga o equipo no válido.',
     'league_full_error' => 'La liga ya ha alcanzado el máximo de 14 equipos.',

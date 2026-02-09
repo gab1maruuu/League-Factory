@@ -35,7 +35,7 @@ class League
         return $stmt->execute([
             'nombre' => $data['nombre'],
             'descripcion' => $data['descripcion'] ?? null,
-            'deporte' => $data['deporte'] ?? 'Futbol', // Default value or require it
+            'deporte' => $data['deporte'] ?? 'Futbol', 
             'temporada' => $data['temporada'] ?? null,
             'estado' => $data['estado'] ?? 'abierta',
             'creado_por' => $data['creado_por']
@@ -44,7 +44,6 @@ class League
 
     public function update($id, $data)
     {
-        // Filter allowed fields to prevent arbitrary column updates
         $allowed = ['nombre', 'descripcion', 'deporte', 'temporada', 'estado'];
         $data = array_intersect_key($data, array_flip($allowed));
 
@@ -87,12 +86,6 @@ class League
 
     public function getUserLeaguesWithStandings($userId)
     {
-        // 1. Find all leagues where one of the user's managed teams is playing
-        // OR simply where valid teams are participants. 
-        // Logic: "Leagues with scores of each team of the leagues the user is part of"
-        // If I am in a league, I want to see the WHOLE table of that league.
-        
-        // Find distinct league IDs where user has a team (captain or creator)
         $sqlLeagues = "
             SELECT DISTINCT l.* 
             FROM ligas l
@@ -105,7 +98,6 @@ class League
         $stmt->execute(['userId' => $userId]);
         $leagues = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // 2. For each league, get the full standings
         foreach ($leagues as &$league) {
             $sqlStandings = "
                 SELECT e.nombre, e.escudo_url, il.* 
@@ -118,7 +110,6 @@ class League
             $stmtStandings->execute(['leagueId' => $league['id']]);
             $league['standings'] = $stmtStandings->fetchAll(PDO::FETCH_ASSOC);
         }
-        
         return $leagues;
     }
 }

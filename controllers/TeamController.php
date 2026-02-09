@@ -54,7 +54,6 @@ class TeamController {
 
             if ($fileExtension === 'png' && $fileType === 'image/png') {
                 $uploadFileDir = 'public/uploads/teams/';
-                // Ensure dir exists (should exist from previous step, but good safety)
                 if (!is_dir($uploadFileDir)) {
                     mkdir($uploadFileDir, 0755, true);
                 }
@@ -92,7 +91,7 @@ class TeamController {
         try {
             if ($this->team->insert($data)) {
                 $_SESSION['success'] = 'Equipo creado exitosamente.';
-                header('Location: index.php?action=home'); // Redirect to home or team list
+                header('Location: index.php?action=home'); 
                 exit;
             } else {
                 $_SESSION['error'] = 'Error al crear el equipo.';
@@ -100,7 +99,7 @@ class TeamController {
                 exit;
             }
         } catch (PDOException $e) {
-            if ($e->getCode() == '23000') { // Integrity constraint violation
+            if ($e->getCode() == '23000') { 
                 $_SESSION['error'] = 'El ID del capitán proporcionado no es válido (no existe el usuario).';
             } else {
                 $_SESSION['error'] = 'Error de base de datos: ' . $e->getMessage();

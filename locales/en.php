@@ -48,7 +48,6 @@ return [
     'captain_id_placeholder' => 'User ID (optional)',
     'captain_hint' => 'You can assign a captain later if you prefer.',
     'cancel' => 'Cancel',
-
     'active_competition' => 'Active Competition',
     'search_league' => 'Search your League',
     'join_league_desc' => 'Join open leagues for this week. Registration closes every Sunday.',
@@ -58,7 +57,6 @@ return [
     'status_open' => 'Open',
     'join_btn' => 'Join',
     'back_home' => '← Back to Home',
-
     'mvc_arch' => 'MVC Architecture',
     'all_rights' => 'All rights reserved.',
     'your_teams' => 'Your Teams',
@@ -87,8 +85,6 @@ return [
     'manage' => 'Manage',
     'in_roster' => 'In roster',
     'no_teams_yet' => 'You have no teams yet.',
-
-    // Join Modal & Standings
     'join_to' => 'Join',
     'select_team_desc' => 'Select which team you want to participate with in this league. You can only register teams where you are captain or creator.',
     'registered_teams' => 'Registered Teams',
@@ -100,7 +96,6 @@ return [
     'subscribe_btn' => 'Register',
     'no_teams_joined_yet' => 'No teams registered yet.',
     'error_loading_teams' => 'Error loading teams.',
-
     'my_competitions' => 'My Competitions',
     'standings' => 'Standings',
     'no_active_leagues' => 'You are not participating in any active league.',
@@ -115,8 +110,6 @@ return [
     'goal_diff_col' => 'GD',
     'points_col' => 'PTS',
     'no_standings_data' => 'No teams registered or matches played yet.',
-
-    // Controller Messages
     'login_required_join' => 'You must log in to join a league.',
     'invalid_league_team' => 'Invalid league or team.',
     'league_full_error' => 'The league has reached the maximum of 14 teams.',

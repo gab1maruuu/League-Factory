@@ -26,10 +26,8 @@ class MyTeamsController
 
         $userId = $_SESSION['user_id'];
         
-        // 1. Teams where user is captain
         $captainTeams = $this->team->findByCaptain($userId);
 
-        // 2. Team where user is a member (via equipo_id in users table)
         $memberTeams = [];
         $currentUser = $this->user->findById($userId);
         if ($currentUser && !empty($currentUser['equipo_id'])) {
@@ -39,7 +37,6 @@ class MyTeamsController
             }
         }
 
-        // Merge and deduplicate by ID
         $allTeams = array_merge($captainTeams, $memberTeams);
         $myTeams = [];
         foreach ($allTeams as $t) {
@@ -65,18 +62,11 @@ class MyTeamsController
 
         $teamData = $this->team->findById($teamId);
 
-        // Verify ownership
         if ($teamData['capitan_id'] != $_SESSION['user_id']) {
             $_SESSION['error'] = __('permission_denied');
             header('Location: index.php?action=my_teams');
             exit;
         }
-
-        // Get members
-        // We need a method in Team model to get members: getMembers($teamId)
-        // Since it's not in the previous file view, I might need to add it or write raw query here.
-        // Better to add to Model. Checking Team.php content is needed.
-        // For now I'll assume I can add it or doing it raw here if model is limited.
 
         $stmt = $this->db->prepare("SELECT id, username, nombre, apellido, foto_perfil FROM usuarios WHERE equipo_id = :team_id");
         $stmt->execute(['team_id' => $teamId]);
@@ -146,7 +136,6 @@ class MyTeamsController
         if ($teamData['capitan_id'] != $_SESSION['user_id'])
             exit;
 
-        // Determine user to add
         $userToAdd = null;
         if ($userId) {
             $userToAdd = $this->user->findById($userId);
@@ -160,7 +149,6 @@ class MyTeamsController
             exit;
         }
 
-        // Update user's team
         $stmt = $this->db->prepare("UPDATE usuarios SET equipo_id = :team_id WHERE id = :user_id");
         $stmt->execute([
             'team_id' => $teamId,
@@ -178,10 +166,7 @@ class MyTeamsController
             exit;
 
         $teamId = $_POST['team_id'];
-        $memberId = $_POST['user_id']; // This receives the user_id (usuario_asociado_id) according to view logic, wait.
-        // View sent user_id which is $member['id'].
-        // But we need to delete from 'jugadores'.
-        // Let's delete based on usuario_asociado_id and equipo_id
+        $memberId = $_POST['user_id'];
 
         $teamData = $this->team->findById($teamId);
         if ($teamData['capitan_id'] != $_SESSION['user_id'])
@@ -197,7 +182,6 @@ class MyTeamsController
 
     public function searchUser()
     {
-        // AJAX endpoint
         header('Content-Type: application/json');
 
         if (!isset($_SESSION['user_id'])) {
