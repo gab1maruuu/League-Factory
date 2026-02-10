@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "../config/Database.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['avatar'])) {
     
@@ -38,13 +39,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['avatar'])) {
     $destiny = $upload_dir . $new_file_name;
 
     if (move_uploaded_file($file_tmp, $destiny)) {
-        $_SESSION['user_photo'] = "/public/images/uploads/" . $new_file_name;
+    $path_for_db = "/public/images/uploads/" . $new_file_name;
+    $user_id = $_SESSION['user_id'] ?? null;
+
+    try {
+        $database = new Database();        
+        $pdo = $database->getPdo(); 
+        $stmt = $pdo->prepare("UPDATE usuarios SET foto_perfil = ? WHERE id = ?");
+        $stmt->execute([$path_for_db, $user_id]);
+
+        $_SESSION['user_photo'] = $path_for_db;
         $_SESSION['upload_success'] = true;
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-        exit;
-    } else {
-        $_SESSION['upload_error'] = 'move_failed';
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-        exit;
+
+    } catch (PDOException $e) {
+        $_SESSION['upload_error'] = 'db_error';
+    }
+
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+    exit;
     }
 }

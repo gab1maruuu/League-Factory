@@ -8,8 +8,8 @@
 <body class="bg-zinc-950 text-white font-sans">
 
 
-    <main class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-8 text-indigo-400"><?php echo __('your_teams'); ?></h1>
+    <main class="container px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 ml-5 text-indigo-400"><?php echo __('your_teams'); ?></h1>
 
         <?php if (isset($_SESSION['error'])): ?>
             <div class="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl mb-6 flex items-center gap-3">
@@ -33,7 +33,7 @@
                 <a href="index.php?action=create_team" class="inline-block bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-500 transition"><?php echo __('create_team'); ?></a>
             </div>
         <?php else: ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ml-5 max-w-full mr-5">
                 <?php foreach ($myTeams as $team): ?>
                     <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 hover:border-indigo-500/50 transition duration-300">
                         <div class="p-6 flex items-center space-x-4">

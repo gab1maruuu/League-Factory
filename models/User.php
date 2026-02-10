@@ -11,7 +11,13 @@ class User
   {
     $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE id = :id");
     $stmt->execute(['id' => $id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && empty($user['foto_perfil'])) {
+        $user['foto_perfil'] = '/public/images/perfil.jpg';
+    }
+
+    return $user;
   }
 
   public function findByEmail($email)

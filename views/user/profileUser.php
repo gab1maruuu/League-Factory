@@ -64,7 +64,7 @@
         <section class="flex items-center mb-10">
             <form action="/controllers/update_perfil.php" method="POST" enctype="multipart/form-data" id="form-avatar">
                 <label for="input-file" class="cursor-pointer relative group block w-40 h-40 overflow-hidden rounded-full border-4 border-zinc-800 shadow-2xl">
-                    <img src="<?php echo (!empty($_SESSION['user_photo'])) ? $_SESSION['user_photo'] : '/public/images/perfil.jpg'; ?>"
+                    <img src="<?php echo (!empty($_SESSION['user_photo'])) ? $_SESSION['user_photo'] : '/public/images/perfil.png'; ?>"
                         class="h-full w-full object-cover opacity-90 group-hover:opacity-40 transition-all duration-500"
                         alt="Foto de perfil">
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
@@ -89,22 +89,24 @@
             <h2 class="w-fit flex text-lg font-bold uppercase tracking-wider text-gray-200 mb-8 space-x-8 border-b-2 border-gray-700">
                 <?php echo __('Account setup') ?>
             </h2>
+
+            <form action="/controllers/update_identity.php" method="POST">
             <div>
                 <h3 class="text-gray-300 uppercase tracking-wider font-bold mb-5">Tu identidad</h3>
                 <div class="space-y-2 mb-5">
                         <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Nombre de usuario</label>
-                        <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_username']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
+                        <input type="text" name="username" value="<?php echo htmlspecialchars($_SESSION['user_username']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
                     </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
                     <div class="space-y-2">
                         <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Nombre</label>
-                        <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_name']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
+                        <input type="text" name="nombre" value="<?php echo htmlspecialchars($_SESSION['user_name']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
                     </div>
 
                     <div class="space-y-2">
                         <label class="text-xs text-gray-400 uppercase font-semibold ml-1">Apellido</label>
-                        <input type="text" value="<?php echo htmlspecialchars($_SESSION['user_surname']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
+                        <input type="text" name="apellido" value="<?php echo htmlspecialchars($_SESSION['user_surname']) ?>" class="w-full bg-[#121212] border border-gray-800 rounded-lg p-3 text-white hover:border-indigo-600 hover:outline-none transition">
 
                     </div>
                     <div class="space-y-2 md:col-span-2">
@@ -113,7 +115,8 @@
                         <p class="text-[14px] text-gray-600 ml-1 italic">El correo no se puede cambiar por seguridad.</p>
                     </div>
                 </div>
-                <button class=" w-full bg-gray-800 hover:bg-gray-900 p-2 rounded-xl mt-5">Guardar cambios</button>
+            </form>
+                <button type="submit" class="w-full bg-gray-800 hover:bg-gray-900 p-2 rounded-xl mt-5">Guardar cambios</button>
         </section>
         <section class="space-y-12">
             <h2 class="w-fit flex text-lg font-bold uppercase tracking-wider text-gray-200 mb-8 space-x-8 border-b-2 border-gray-700">

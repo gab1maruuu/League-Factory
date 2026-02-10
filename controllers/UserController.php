@@ -69,6 +69,7 @@ class UserController
     $_SESSION['user_surname'] = $userData['apellido'];
     $_SESSION['user_email'] = $userData['email'];
     $_SESSION['user_role'] = $userData['rol'];
+    $_SESSION['user_photo'] = !empty($userData['foto_perfil']) ? $userData['foto_perfil'] : '/public/images/perfil.jpg';
 
     header('Location: index.php?action=home');
     exit;
